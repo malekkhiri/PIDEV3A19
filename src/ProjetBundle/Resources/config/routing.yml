@@ -1,8 +1,0 @@
-projet_homepage:
-    path:     /
-    defaults: { _controller: ProjetBundle:Default:index }
-
-Layout:
-    path:     /Layout
-    defaults: { _controller: ProjetBundle:Default:Layout }
-
