@@ -1,9 +1,0 @@
-form:
-    path:     /
-    defaults: { _controller: ProjetBundle:Default:index }
-table:
-    path:     /t
-    defaults: { _controller: ProjetBundle:Table:table}
-rech:
-    path:     /r
-    defaults: { _controller: ProjetBundle:rech:recherche}
