@@ -11,5 +11,8 @@ namespace AppBundle\Controller;
 
 class MagasinController
 {
+    public function Con()
+    {
 
+    }
 }
