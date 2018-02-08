@@ -1,0 +1,15 @@
+home:
+    path:     /
+    defaults: { _controller: ProjetBundle:Default:index }
+
+Layout:
+    path:     /layout
+    defaults: { _controller: ProjetBundle:Default:Layout }
+
+log:
+    path:     /l
+    defaults: { _controller: ProjetBundle:Login:login }
+reg:
+    path:     /r
+    defaults: { _controller: ProjetBundle:Register:register }
+

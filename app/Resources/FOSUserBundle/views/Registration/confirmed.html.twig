@@ -1,0 +1,25 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+{% block fos_user_content %}
+    <br> <br> <br> <br> <br> <br> <br> <br>
+
+   <div class="container">
+
+    <div class="message-box">
+        <div class="message-icon">
+            <img src="{{ asset('bundles/image/good-quality.png') }}" width="80" height="81" alt="success">
+        </div>
+
+</div>
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading"><p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p></h4>
+        {% if targetUrl %}
+            <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+        {% endif %}
+
+    </div>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+{% endblock fos_user_content %}
