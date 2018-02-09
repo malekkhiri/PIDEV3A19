@@ -1,0 +1,9 @@
+form:
+    path:     /
+    defaults: { _controller: AdminBundle:Default:index }
+table:
+    path:     /t
+    defaults: { _controller: AdminBundle:Table:table}
+rech:
+    path:     /r
+    defaults: { _controller: AdminBundle:rech:recherche}
