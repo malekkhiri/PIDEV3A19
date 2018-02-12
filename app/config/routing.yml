@@ -1,6 +1,6 @@
 rclamation:
     resource: "@ReclamationBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /r
 
 produit:
     resource: "@ProduitBundle/Resources/config/routing.yml"
