@@ -1,0 +1,14 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+        {% block fos_user_content %}
+            <div class="row">
+                <div class="col-sm-9" id="content">
+                    <h1 class="title">Register Account</h1>
+                    {% include "@FOSUser/Registration/register_content.html.twig" %}
+
+
+                </div>
+            </div>
+
+
+        {% endblock fos_user_content %}
