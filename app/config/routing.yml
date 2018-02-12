@@ -1,6 +1,6 @@
 evenement:
     resource: "@EvenementBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /e
 
 rclamation:
     resource: "@ReclamationBundle/Resources/config/routing.yml"
