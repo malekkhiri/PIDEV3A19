@@ -1,6 +1,6 @@
 produit:
     resource: "@ProduitBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /p
 
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
