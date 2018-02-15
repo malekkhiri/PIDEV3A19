@@ -1,3 +1,24 @@
 produit_homepage:
     path:     /
     defaults: { _controller: ProduitBundle:Default:index }
+produit_Ajout:
+    path:     /Ajout
+    defaults: { _controller: ProduitBundle:Produit:Ajout }
+produit_Affichage:
+    path:     /Afficher
+    defaults: { _controller: ProduitBundle:Produit:Affiche }
+produit_modifier:
+    path:     /modifier/{id}
+    defaults: { _controller: ProduitBundle:Produit:update }
+produit_modif:
+    path:     /modifierd/{id}
+    defaults: { _controller: ProduitBundle:Produit:modifier }
+produit_supprimer:
+    path:     /supprimer/{id}
+    defaults: { _controller: ProduitBundle:Produit:sup }
+list:
+    path:     /lister
+    defaults: { _controller: ProduitBundle:Produit:List }
+afficher_Produit:
+    path:     /lister/{id}
+    defaults: { _controller: ProduitBundle:Produit:ListDetaille }

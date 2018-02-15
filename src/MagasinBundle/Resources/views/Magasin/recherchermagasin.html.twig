@@ -1,0 +1,47 @@
+{% extends "::base.html.twig" %}
+{% block content %}
+
+    <h1 style="text-align: center ; color: #cb1d1d" xmlns="http://www.w3.org/1999/html">Recherche Magasins</h1>
+
+
+    {{ form(form) }}
+
+
+
+
+    <input type="submit" class=" btn btn-primary col-lg-push-3" value="Rechercher">
+
+
+    <h2>Liste des magasins</h2>
+
+    <section class="tableau">
+        <table class="table">
+
+
+            <tr>
+                <th>Id</th> <th>Nom Magasin</th><th>Propriétaire Magasin</th> <th>AddresseMagasin</th><th>Modifier Magasin</th> <th>Supprimer Magasin</th>
+
+
+            </tr>
+
+            {% for magasin in magasin %}
+                <tr>
+                    <td>{{ magasin.getIdMagasin() }}</td>
+                    <td>{{ magasin.getNomMagasin() }}</td>
+                    <td>{{ magasin.getPropMagasin() }}</td>
+                    <td>{{ magasin.getAddresseMagasin() }}</td>
+                    <td><a href="{{ path('_ModifierMagasin',{'id':magasin.getIdMagasin()}) }}">Modifier</a></td>
+                    <td><a href="{{ path('_SupprimerMagasin',{'id':magasin.getIdMagasin()}) }}">Supprimer</a></td>
+
+
+
+                </tr>
+
+            {% endfor %}
+        </table>
+
+    </section>
+    {{ form_end(form) }}
+
+
+{% endblock %}
