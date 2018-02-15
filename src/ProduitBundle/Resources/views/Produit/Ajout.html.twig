@@ -1,0 +1,111 @@
+{#
+{% extends '::base.html.twig'%}
+{% block content %}
+    <h1 style="text-align: center; color: #cb1d1d"> Ajouter Un Produit</h1>
+    <br><br><br><br>
+
+
+<form method="post"  enctype="multipart/form-data">
+    <div class="container">
+        <div class="col-sm-9" id="content">
+    <div class="form-group required">
+        <label  class="col-sm-2 control-label">Nom_Produit</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control"  placeholder="Nom_Produit"  name="Nom_Produit">
+        </div>
+    </div>
+
+    <div class="form-group required">
+        <label class="col-sm-2 control-label">Prix</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control"  placeholder="Prix"  name="Prix">
+        </div>
+    </div>
+    <div class="form-group required">
+        <label  class="col-sm-2 control-label">Quantité</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control"  placeholder="Quantite"  name="Quantite">
+        </div>
+    </div>
+    <div class="form-group required">
+        <label  class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control"  placeholder="Description"  name="Description">
+        </div>
+
+
+
+
+
+
+    <div  class="pull-right">
+
+
+
+
+        <input type="submit" class="btn btn-primary" value="Ajouter Produit">
+    </div>
+    </div>
+    </div>
+    </div>
+</form>
+{% endblock %}
+
+#}
+{% extends "::base.html.twig" %}
+{% block content %}
+
+
+    <h1 style="text-align: center; color: #cb1d1d"> Ajouter Un Produit</h1>
+    <div class="container">
+        <div class="row">
+            {{ form_start(p) }}
+
+            <div class="form-group required">
+                {{ form_label(p.nomProduit, 'Nom Produit ', {'label_attr' :{'class': 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+
+
+                    {{ form_widget(p.nomProduit, {'attr':{'class':'form-control','placeholder':'Nom Produit'}}) }}
+                </div>
+            </div>
+
+
+            <div class="form-group required">
+                {{ form_label(p.prix, 'Prix  Produit ', {'label_attr' :{'class': 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+
+                    {{ form_widget(p.prix, {'attr':{'class':'form-control','placeholder':'Prix Produit'}}) }}
+                </div>
+            </div>
+
+
+            <div class="form-group required">
+                {{ form_label(p.quantite, ' Quantitée Produit ', {'label_attr' :{'class': 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+
+
+                    {{ form_widget(p.quantite,  {'attr':{'class':'form-control ','placeholder':'Status'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group required">
+                {{ form_label(p.description, ' Description du  Produit ', {'label_attr' :{'class': 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+
+
+                    {{ form_widget(p.description,  {'attr':{'class':'form-control ','placeholder':'Description'}}) }}
+                </div>
+            </div>
+            {{ form_row(p.brochure) }}
+
+
+            <div  class="pull-right">
+                <br><br><br><br><br>
+                <input type="submit" class=" btn btn-primary col-lg-push-3" value="Ajouter un Produit ">
+                <br>        <br><br><br><br></div>
+
+            {{ form_end(p) }}
+        </div>
+    </div>
+{% endblock %}

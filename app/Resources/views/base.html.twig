@@ -15,8 +15,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/css/owl.transitions.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/css/responsive.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/css/stylesheet-skin2.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/css/table.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/css/style.css')}}" />
     <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Droid+Sans' type='text/css'>
-    <script src="{{ asset('bundles/t/js/jquery.vide.min.js')}}"></script>
+
 
     <!-- CSS Part End-->
 </head>
@@ -221,7 +223,11 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li><a href="category.html" >Women</a> </li>
+
+
+                                    <li><a href="{{ path('list') }}" >Galerie de Produit</a> </li>
+
+
                                     <li><a href="category.html">Girls<span>&rsaquo;</span></a>
                                         <div class="dropdown-menu">
                                             <ul>
@@ -298,7 +304,7 @@
                             <li> <a href="#">Devenir Vendeur</a></li>
                         {% endif %}
                         {% if is_granted("ROLE_VENDEUR") %}
-                            <li><a href="product.html">Gerer Les Produits </a></li>
+                            <li><a href="{{ path('produit_Affichage') }}">Gerer Les Produits </a></li>
                         {% endif %}
 
                         <li class="dropdown information-link"><a>Interessant</a>
