@@ -5,6 +5,9 @@ magasin_homepage:
 _AfficheMagasin:
     path:     /AfficheMagasin
     defaults: { _controller: MagasinBundle:Magasin:AfficheMagasin }
+_Affiche2Magasin:
+    path:     /Affiche2Magasin
+    defaults: { _controller: MagasinBundle:Magasin:Affiche2Magasin }
 
 _AjoutMagasin:
     path:     /AjoutMagasin

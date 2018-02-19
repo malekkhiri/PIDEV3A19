@@ -8,10 +8,7 @@
 
 
 
-
-    <input type="submit" class=" btn btn-primary col-lg-push-3" value="Rechercher">
-
-
+    {{ form_end(form) }}
     <h2>Liste des magasins</h2>
 
     <section class="tableau">
@@ -19,7 +16,7 @@
 
 
             <tr>
-                <th>Id</th> <th>Nom Magasin</th><th>Propriétaire Magasin</th> <th>AddresseMagasin</th><th>Modifier Magasin</th> <th>Supprimer Magasin</th>
+                <th>Id</th> <th>Nom Magasin</th><th>Propriétaire Magasin</th> <th>Region</th> <th>Ville</th> <th>AdresseMagasin</th><th>Modifier Magasin</th> <th>Supprimer Magasin</th>
 
 
             </tr>
@@ -29,7 +26,9 @@
                     <td>{{ magasin.getIdMagasin() }}</td>
                     <td>{{ magasin.getNomMagasin() }}</td>
                     <td>{{ magasin.getPropMagasin() }}</td>
-                    <td>{{ magasin.getAddresseMagasin() }}</td>
+                    <td>{{ magasin.getRegion() }}</td>
+                    <td>{{ magasin.getVille() }}</td>
+                    <td>{{ magasin.getAdresseMagasin() }}</td>
                     <td><a href="{{ path('_ModifierMagasin',{'id':magasin.getIdMagasin()}) }}">Modifier</a></td>
                     <td><a href="{{ path('_SupprimerMagasin',{'id':magasin.getIdMagasin()}) }}">Supprimer</a></td>
 
@@ -41,7 +40,6 @@
         </table>
 
     </section>
-    {{ form_end(form) }}
 
 
 {% endblock %}

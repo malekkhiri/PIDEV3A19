@@ -17,7 +17,6 @@ class Magasin
      *
      * @ORM\Column(name="id_magasin", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id_magasin;
 
@@ -26,29 +25,62 @@ class Magasin
      *
      * @ORM\Column(name="nom_magasin", type="string", length=255)
      */
-    private $nomMagasin;
+    private $nom_magasin;
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="prop_magasin",referencedColumnName="id")
+     */
+    private $prop_magasin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prop_magasin", type="string", length=255)
+     * @ORM\Column(name="adresse_magasin", type="string", length=255)
      */
-    private $propMagasin;
+    private $adresse_magasin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="addresse_magasin", type="string", length=255)
+     * @ORM\Column(name="region", type="string", length=255)
      */
-    private $addresseMagasin;
+    private $region;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
+
 
 
     /**
-     * Get id
+     * Set idMagasin
      *
-     * @return int
+     * @param integer $idMagasin
+     *
+     * @return Magasin
      */
+    public function setIdMagasin($idMagasin)
+    {
+        $this->id_magasin = $idMagasin;
 
+        return $this;
+    }
+
+    /**
+     * Get idMagasin
+     *
+     * @return integer
+     */
+    public function getIdMagasin()
+    {
+        return $this->id_magasin;
+    }
 
     /**
      * Set nomMagasin
@@ -59,7 +91,7 @@ class Magasin
      */
     public function setNomMagasin($nomMagasin)
     {
-        $this->nomMagasin = $nomMagasin;
+        $this->nom_magasin = $nomMagasin;
 
         return $this;
     }
@@ -71,7 +103,7 @@ class Magasin
      */
     public function getNomMagasin()
     {
-        return $this->nomMagasin;
+        return $this->nom_magasin;
     }
 
     /**
@@ -83,7 +115,7 @@ class Magasin
      */
     public function setPropMagasin($propMagasin)
     {
-        $this->propMagasin = $propMagasin;
+        $this->prop_magasin = $propMagasin;
 
         return $this;
     }
@@ -95,40 +127,78 @@ class Magasin
      */
     public function getPropMagasin()
     {
-        return $this->propMagasin;
+        return $this->prop_magasin;
     }
 
     /**
-     * Set addresseMagasin
+     * Set adresseMagasin
      *
-     * @param string $addresseMagasin
+     * @param string $adresseMagasin
      *
      * @return Magasin
      */
-    public function setAddresseMagasin($addresseMagasin)
+    public function setAdresseMagasin($adresseMagasin)
     {
-        $this->addresseMagasin = $addresseMagasin;
+        $this->adresse_magasin = $adresseMagasin;
 
         return $this;
     }
 
     /**
-     * Get addresseMagasin
+     * Get adresseMagasin
      *
      * @return string
      */
-    public function getAddresseMagasin()
+    public function getAdresseMagasin()
     {
-        return $this->addresseMagasin;
+        return $this->adresse_magasin;
     }
 
     /**
-     * Get idMagasin
+     * Set region
      *
-     * @return integer
+     * @param string $region
+     *
+     * @return Magasin
      */
-    public function getIdMagasin()
+    public function setRegion($region)
     {
-        return $this->id_magasin;
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Magasin
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
     }
 }

@@ -2,11 +2,30 @@
 
 namespace MagasinBundle\Controller;
 
+use MagasinBundle\Entity\Magasin;
+use MagasinBundle\Form\MagasinType;
+use MagasinBundle\Form\RechercheMagasin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+
+
 
 class MagasinController extends Controller
 {
     public function AfficheMagasinAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user=$this->getUser();
+        $uid=$user->getId();
+        $magasin = $em->getRepository("MagasinBundle:Magasin")->findby(['prop_magasin'=>$uid]);
+        return $this->render('MagasinBundle:Magasin:affichemagasin.html.twig',
+            array(
+                'm' => $magasin
+
+            ));
+    }
+    public function Affiche2MagasinAction()
     {
         $em = $this->getDoctrine()->getManager();
         $magasin = $em->getRepository("MagasinBundle:Magasin")->findAll();
@@ -25,7 +44,7 @@ class MagasinController extends Controller
         $Form = $this->createForm(MagasinType::class, $magasin);
         $Form->handleRequest($request);
         if ($Form->isValid()) {
-
+            $magasin->setPropMagasin($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($magasin);
             $em->flush();
@@ -76,6 +95,8 @@ class MagasinController extends Controller
     {
         $magasin = new Magasin();
         //$id=$request->get('id');
+        $user=$this->getUser();
+        $uid=$user->getId();
         $em = $this->getDoctrine()->getManager();
         $Form = $this->createForm(RechercheMagasin::class, $magasin);
 
@@ -85,7 +106,7 @@ class MagasinController extends Controller
             $magasin = $em->getRepository("MagasinBundle:Magasin")->findBy(array('id_magasin' => $magasin->getIdMagasin()));
 
         } else {
-            $magasin = $em->getRepository("MagasinBundle:Magasin")->findAll();
+            $magasin = $em->getRepository("MagasinBundle:Magasin")->findby(['prop_magasin'=>$uid]);
 
 
         }

@@ -7,20 +7,34 @@
         <section class="tableau"></section>
 
         <tr>
-            <th>Id</th> <th>Nom Magasin</th><th>Propriétaire Magasin</th> <th>AddresseMagasin</th>
+            <th>Id</th> <th>Nom Magasin</th><th>Region</th><th>Ville</th> <th>AdresseMagasin</th>
             {% if is_granted("ROLE_VENDEUR") %}
+                <th>Propriétaire Magasin</th>
                 <th>Modifier Magasin</th>
                 <th>Supprimer Magasin</th>
+                <th>Statistique</th>
+                <th>Liste des produits</th>
             {% endif %}
+
+    {% if is_granted("ROLE_UTILISATEUR") %}
+        <th>Statistique</th>
+        <th>Liste des produits</th>
+
+    {% endif %}
+
         </tr>
 
         {% for magasin in m %}
             <tr>
                 <td>{{ magasin.getIdMagasin() }}</td>
                 <td>{{ magasin.getNomMagasin() }}</td>
-                <td>{{ magasin.getPropMagasin() }}</td>
-                <td>{{ magasin.getAddresseMagasin() }}</td>
+                <td>{{ magasin.getRegion() }}</td>
+                <td>{{ magasin.getVille() }}</td>
+                <td>{{ magasin.getAdresseMagasin() }}</td>
+
                 {% if is_granted("ROLE_VENDEUR") %}
+                    <td>{{ magasin.getPropMagasin() }}</td>
+
                     <td><a href="{{ path('_ModifierMagasin',{'id':magasin.getIdMagasin()}) }}">Modifier</a></td>
                     <td><a href="{{ path('_SupprimerMagasin',{'id':magasin.getIdMagasin()}) }}">Supprimer</a></td>
 

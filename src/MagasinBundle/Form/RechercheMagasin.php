@@ -2,14 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: Hosni
- * Date: 13/02/2018
- * Time: 16:23
+ * Date: 12/02/2018
+ * Time: 22:20
  */
 
 namespace MagasinBundle\Form;
 
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,7 +22,7 @@ class RechercheMagasin extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id_magasin')
+            ->add('id_magasin')->add('Recherche',SubmitType::class)
         ;
 
     }
@@ -42,3 +43,10 @@ class RechercheMagasin extends AbstractType
         return 'magasinbundle_magasin';
     }
 }
+
+
+
+
+
+
+
