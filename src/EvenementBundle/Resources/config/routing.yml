@@ -1,3 +1,18 @@
 evenement_homepage:
     path:     /
     defaults: { _controller: EvenementBundle:Default:index }
+_ajout:
+    path:     /ajout
+    defaults: { _controller: EvenementBundle:Evenement:Ajout }
+_affiche:
+    path:     /affiche
+    defaults: { _controller: EvenementBundle:Evenement:Affiche }
+_modifier:
+    path:     /modifier/{id_Evenement}
+    defaults: { _controller: EvenementBundle:Evenement:Modifier }
+_supprimer:
+    path:     /supprimer/{id_Evenement}
+    defaults: { _controller: EvenementBundle:Evenement:Supprimer }
+_calendrier:
+    path:     /cal
+    defaults: { _controller: EvenementBundle:Evenement:calendrier }

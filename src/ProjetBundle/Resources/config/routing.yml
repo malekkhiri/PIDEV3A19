@@ -6,9 +6,9 @@ Layout:
     path:     /layout
     defaults: { _controller: ProjetBundle:Default:Layout }
 
-log:
-    path:     /l
-    defaults: { _controller: ProjetBundle:Login:login }
+even:
+    path:     /evenement
+    defaults: { _controller: ProjetBundle:Table:evenement }
 reg:
     path:     /r
     defaults: { _controller: ProjetBundle:Register:register }
