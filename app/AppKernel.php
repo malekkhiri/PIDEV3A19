@@ -23,7 +23,7 @@ class AppKernel extends Kernel
             new ReclamationBundle\ReclamationBundle(),
             new EvenementBundle\EvenementBundle(),
             new MagasinBundle\MagasinBundle(),
-            new AncaRebeca\FullCalendarBundle\FullCalendarBundle()
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
