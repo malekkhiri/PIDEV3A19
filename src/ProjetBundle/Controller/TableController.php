@@ -12,5 +12,10 @@ class TableController extends Controller
         return $this->render('ProjetBundle:back:tables.html.twig');
     }
 
+    public function evenementAction()
+    {
+        return $this->render('ProjetBundle:back:evenment.html.twig');
+    }
+
 
 }

@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+{% block content %}
+<table class="table">
+<td>{{ event.nomEvenement }}</td>
+    <td>{{ event.dateDebut|date("y-m-d") }}</td>
+    <td>{{ event.dateFin|date("y-m-d") }}</td>
+    <td>{{ event.Lieux}}</td>
+    <td>{{ event.Description}}</td>
+    <td><a href="{{ path('_afficheCommentaire',{'id_Evenement':event.id_Evenement}) }}">Show Comment</a> </td>
+
+</table>
+
+{% endblock %}
