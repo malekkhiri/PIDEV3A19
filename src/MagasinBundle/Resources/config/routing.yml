@@ -1,0 +1,25 @@
+magasin_homepage:
+    path:     /m
+    defaults: { _controller: MagasinBundle:Default:index }
+
+_AfficheMagasin:
+    path:     /AfficheMagasin
+    defaults: { _controller: MagasinBundle:Magasin:AfficheMagasin }
+_Affiche2Magasin:
+    path:     /Affiche2Magasin
+    defaults: { _controller: MagasinBundle:Magasin:Affiche2Magasin }
+
+_AjoutMagasin:
+    path:     /AjoutMagasin
+    defaults: { _controller: MagasinBundle:Magasin:AjoutMagasin }
+
+_ModifierMagasin:
+    path:     /ModifierMagasin/{id}
+    defaults: { _controller: MagasinBundle:Magasin:ModifierMagasin }
+
+_SupprimerMagasin:
+    path:     /SupprimerMagasin/{id}
+    defaults: { _controller: MagasinBundle:Magasin:SupprimerMagasin }
+_RechercheMagasin:
+    path:     /RechercheMagasin
+    defaults: { _controller: MagasinBundle:Magasin:RechercheMagasin }

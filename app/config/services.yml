@@ -16,7 +16,6 @@ services:
         # this means you cannot fetch services directly from the container via $container->get()
         # if you need to do this, you can override this setting on individual services
         public: false
-
     # makes classes in src/AppBundle available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     AppBundle\:
@@ -32,6 +31,7 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
@@ -42,3 +42,11 @@ services:
         tags:
              - { name: form.type, alias: app_user_registration }
 
+parameters:
+    brochures_directory: '%kernel.project_dir%/web/bundles/uploads/brochures'
+
+services:
+   app_bundle.service.listener:
+    class: AppBundle\Listener\LoadDataListener
+   tags:
+   - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }

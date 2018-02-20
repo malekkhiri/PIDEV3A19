@@ -1,0 +1,56 @@
+
+{% extends "::base.html.twig" %}
+{% block content %}
+
+    <h1 style="text-align: center ; color: #cb1d1d" xmlns="http://www.w3.org/1999/html">Listes Des Magasins</h1>
+    <table class="table">
+        <section class="tableau"></section>
+
+        <tr>
+            <th>Id</th> <th>Nom Magasin</th><th>Region</th><th>Ville</th> <th>AdresseMagasin</th>
+            {% if is_granted("ROLE_VENDEUR") %}
+                <th>Propriétaire Magasin</th>
+                <th>Modifier Magasin</th>
+                <th>Supprimer Magasin</th>
+                <th>Statistique</th>
+                <th>Liste des produits</th>
+            {% endif %}
+
+    {% if is_granted("ROLE_UTILISATEUR") %}
+        <th>Statistique</th>
+        <th>Liste des produits</th>
+
+    {% endif %}
+
+        </tr>
+
+        {% for magasin in m %}
+            <tr>
+                <td>{{ magasin.getIdMagasin() }}</td>
+                <td>{{ magasin.getNomMagasin() }}</td>
+                <td>{{ magasin.getRegion() }}</td>
+                <td>{{ magasin.getVille() }}</td>
+                <td>{{ magasin.getAdresseMagasin() }}</td>
+
+                {% if is_granted("ROLE_VENDEUR") %}
+                    <td>{{ magasin.getPropMagasin() }}</td>
+
+                    <td><a href="{{ path('_ModifierMagasin',{'id':magasin.getIdMagasin()}) }}">Modifier</a></td>
+                    <td><a href="{{ path('_SupprimerMagasin',{'id':magasin.getIdMagasin()}) }}">Supprimer</a></td>
+
+                {% endif %}
+
+
+            </tr>
+
+        {% endfor %}
+        </section>
+
+    </table>
+    <br>
+    {% if is_granted("ROLE_VENDEUR") %}
+        <a href="{{ path('_RechercheMagasin') }}"><h5 style="text-align: center"> Effectuer Recherche</h5></a>
+        <a href="{{ path('_AjoutMagasin') }}"><h5 style="text-align: center"> Ajouter une Magasin </h5></a>
+        <br>
+    {% endif %}
+{% endblock %}

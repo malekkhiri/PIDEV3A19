@@ -1,0 +1,55 @@
+
+{% extends "::base.html.twig" %}
+{% block content %}
+    <h1 style="text-align: center; color: #cb1d1d"> Liste des Produits</h1>
+
+    <br>
+
+
+    <table class="table">
+        <section class="tableau">
+
+
+        <tr>
+
+           <th class="cellule">Nom du Produit</th>
+            <th class="cellule">Prix du Produit</th>
+            <th class="cellule">Quantite</th>
+            <th class="cellule">Description</th>
+            <th class="cellule">Image</th>
+           <th class="cellule">Modifier</th>
+            <th class="cellule">Supprimer</th>
+
+
+
+        </tr>
+
+
+        {% for produit in p %}
+            <tr>
+
+
+                <td>{{ produit.nomProduit }}</td>
+                <td>{{ produit.prix }}</td>
+                <td>{{ produit.quantite }}</td>
+                <td>{{ produit.description }}</td>
+                <td>  <a href="{{ asset('bundles/uploads/brochures/'~produit.brochure )}}"><img style="width: 100px ;height: 100px" src="{{ asset('bundles/uploads/brochures/'~produit.brochure )}}"></a></td>
+                <td><a href="{{ path('produit_modifier',{'id':produit.idProduit} )}}">modifier image</a></td>
+                <td><a href="{{ path('produit_modif',{'id':produit.idProduit} )}}">modifier</a></td>
+                <td><a href="{{ path('produit_supprimer',{'id':produit.idProduit} )}}">supprimer</a></td>
+
+            </tr>
+
+        {% endfor %}
+
+
+        </section>
+
+    </table>
+
+<br>
+<a href="{{ path('produit_Ajout') }}" > <h5 style="text-align: center">Ajouter un nouveaux Produit </h5></a>
+    <br>
+
+  {% endblock %}
+
