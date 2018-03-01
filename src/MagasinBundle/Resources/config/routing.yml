@@ -2,9 +2,16 @@ magasin_homepage:
     path:     /m
     defaults: { _controller: MagasinBundle:Default:index }
 
+_AfficheNote:
+    path:     /AfficheNote/{id}
+    defaults: { _controller: MagasinBundle:Note:AfficheNote }
+
 _AfficheMagasin:
     path:     /AfficheMagasin
     defaults: { _controller: MagasinBundle:Magasin:AfficheMagasin }
+_Affiche2Magasin:
+    path:     /Affiche2Magasin
+    defaults: { _controller: MagasinBundle:Magasin:Affiche2Magasin }
 
 _AjoutMagasin:
     path:     /AjoutMagasin
@@ -17,6 +24,40 @@ _ModifierMagasin:
 _SupprimerMagasin:
     path:     /SupprimerMagasin/{id}
     defaults: { _controller: MagasinBundle:Magasin:SupprimerMagasin }
+
 _RechercheMagasin:
     path:     /RechercheMagasin
     defaults: { _controller: MagasinBundle:Magasin:RechercheMagasin }
+
+_RechercheIMagasin:
+    path:     /RechercheIMagasin
+    defaults: { _controller: MagasinBundle:Magasin:RechercheIMagasin }
+
+_graphePiee:
+    path: /graphePiee
+    defaults: { _controller: MagasinBundle:Graphe:Graphe }
+
+_Rating:
+    path:     /Rating/{id}
+    defaults: { _controller: MagasinBundle:Note:afficheRating }
+
+CreateRating:
+    path:     /CreateRating/{note}/{id}
+    defaults: { _controller: MagasinBundle:Note:CreateRating }
+
+_backmagasin:
+    path: /backmagasin
+    defaults: { _controller: MagasinBundle:Magasin:AfficheMagasinadmin }
+
+
+_valide:
+ path: /valide/{id}
+ defaults: { _controller: MagasinBundle:Magasin:Validate }
+
+_SupprimerMagasinn:
+    path:     /SupprimerMagasinn/{id}
+    defaults: { _controller: MagasinBundle:Magasin:SupprimerMagasinadmin }
+
+_attend:
+    path:     /attend
+    defaults: { _controller: MagasinBundle:Magasin:attend}

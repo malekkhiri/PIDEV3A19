@@ -1,0 +1,39 @@
+{% extends "ProjetBundle:back:table.html.twig" %}
+{% block container %}
+
+
+<table class="table">
+    <section class="table">
+
+    <tr>
+        <th>Titre</th><th>Ville</th><th>Region</th><th>Description</th>
+        <th>Telephone vendeur</th>
+        <th>Prix</th>
+        <th>Image</th>
+        <th>Supprimer</th>
+        <th>Accepter</th>
+    </tr>
+    {% for annonces in a %}
+        <tr>
+            {% if annonces.approuver == 0 %}
+            <td>{{ annonces.titre }}</td>
+            <td>{{ annonces.ville }}</td>
+            <td>{{ annonces.region }}</td>
+            <td>{{ annonces.description}}</td>
+            <td>{{ annonces.telephoneVendeur }}</td>
+            <td>{{ annonces.prix }}</td>
+            <td><img src="{{ asset('bundles/images/')~ annonces.imageName }}"  style="width: 100px ;height: 100px" class="img-responsive"/></td>
+            <td><a href="{{ path('_supprimerannonce',{'idVenteLibre':annonces.idVenteLibre}) }}">Supprimer</a> </td>
+            <td><a href="{{ path('Accepter',{'id':annonces.idVenteLibre}) }}">accepter</a> </td>
+        </tr>
+
+    </section>   
+
+    {% endif %}
+     {% endfor %}
+
+</table>
+
+{% endblock %}
+
+

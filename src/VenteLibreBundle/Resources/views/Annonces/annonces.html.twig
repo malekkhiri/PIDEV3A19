@@ -1,0 +1,49 @@
+{% extends "::base.html.twig" %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".product-thumb").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+<h1 style="text-align: center;color: #cb1d1d">Les Annonce</h1>
+
+    <div id="container">
+
+        <div class="container">
+            <div class="row">
+                
+                <!--Middle Part Start-->
+                <div id="content" class="col-xs-12">
+                    <h3 class="subtitle">Annonces <input id="myInput" class="form-control" type="text" placeholder="Chercher .."></h3>
+                    <div class="owl-carousel latest_category_carousel">
+                      {% for annonces in a %}
+                      {% if annonces.approuver == 1 %}
+                        <div class="product-thumb" id="titres">
+                            <div class="image"><a href="{{ path('annonce_view', { 'id': annonces.idVenteLibre }) }}"><img src="{{ asset('bundles/images/')~ annonces.imageName }}" alt="{{ annonces.titre }}" class="img-responsive" /></a></div>
+                            <div class="caption">
+                                <h4>{{ annonces.titre }}</h4>
+                                <p class="price">{{ annonces.prix }} TND </p>
+                            </div>
+                          
+                        </div>
+                         {% endif %}
+                      {% endfor %}
+                    </div>
+                  
+                    <!-- Brand Logo Carousel End -->
+                </div>
+                <!--Middle Part End-->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Feature Box End-->
+{% endblock %}
+
+

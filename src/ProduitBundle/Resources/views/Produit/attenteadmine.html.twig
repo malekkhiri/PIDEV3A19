@@ -1,0 +1,24 @@
+
+
+
+{% extends "::base.html.twig" %}
+ {% block content %}
+     <br><br><br><br>
+     <div class="container">
+
+         <div class="message-box">
+             <div class="message-icon">
+                 <img src="{{ asset('bundles/image/good-quality.png') }}" width="80" height="81" alt="success">
+             </div>
+
+         </div>
+         <div class="alert alert-success" role="alert">
+             <h4 class="alert-heading"><p>Votre demande d'ajout d'un Produit  est en cours de traitement, Merci d'attendez la validation.</p></h4>
+             <br><br>
+             <p><a href="{{ path('home') }}" > Retour vers la page d'acceuil</a></p>
+
+
+         </div>
+     </div>
+
+ {% endblock %}

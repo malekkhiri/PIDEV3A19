@@ -2,11 +2,14 @@ produit_homepage:
     path:     /
     defaults: { _controller: ProduitBundle:Default:index }
 produit_Ajout:
-    path:     /Ajout
+    path:     /Ajout/{id}
     defaults: { _controller: ProduitBundle:Produit:Ajout }
 produit_Affichage:
     path:     /Afficher
     defaults: { _controller: ProduitBundle:Produit:Affiche }
+produit_Affichage_M:
+    path:     /AfficherM/{id}
+    defaults: { _controller: ProduitBundle:Produit:AfficheMP }
 produit_modifier:
     path:     /modifier/{id}
     defaults: { _controller: ProduitBundle:Produit:update }
@@ -18,7 +21,26 @@ produit_supprimer:
     defaults: { _controller: ProduitBundle:Produit:sup }
 list:
     path:     /lister
-    defaults: { _controller: ProduitBundle:Produit:List }
+    defaults: { _controller: ProduitBundle:Produit:recherche }
 afficher_Produit:
     path:     /lister/{id}
     defaults: { _controller: ProduitBundle:Produit:ListDetaille }
+ajout_promotion:
+    path:     /promotion/{id}/{idm}
+    defaults: { _controller: ProduitBundle:Promotion:update}
+affiche_promo:
+    path:     /hh/{id}
+    defaults: { _controller: ProduitBundle:Promotion:ListDetaille}
+like_produit:
+    path:     /likeproduit/{id}
+    defaults: { _controller: ProduitBundle:Produit:like}
+dislike_produit:
+    path:     /dislikeproduit/{id}
+    defaults: { _controller: ProduitBundle:Produit:dislike}
+supp_comm:
+    path:     /supprimerc/{id}/{idp}
+    defaults: { _controller: ProduitBundle:Produit:supcomm}
+attente_admine:
+    path:     /attente
+    defaults: { _controller: ProduitBundle:Produit:attente}
+

@@ -1,0 +1,33 @@
+<h1>Products TABLE</h1>
+
+<table >
+    <thead>
+
+    <tr>
+
+        <th class="cellule">Nom du Produit</th>
+        <th class="cellule">Prix du Produit</th>
+        <th class="cellule">nouveaux prix</th>
+
+
+
+
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for promotion in p %}
+
+        <tr>
+
+            <td>{{ promotion.idProduit.nomProduit }}</td>
+            <td>{{ promotion.idProduit.prix }}</td>
+            <td>{{promotion.idProduit.prix * promotion.pourcentage  }}</td>
+
+
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+</table>

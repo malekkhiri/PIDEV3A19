@@ -101,11 +101,36 @@
 
 
             <div  class="pull-right">
+
+
+
+
                 <br><br><br><br><br>
-                <input type="submit" class=" btn btn-primary col-lg-push-3" value="Ajouter un Produit ">
-                <br>        <br><br><br><br></div>
+
+    <input type="submit" class=" btn btn-primary col-lg-push-3" value="Ajouter un Produit ">
+
+                <br>        <br><br><br><br>
+
+            </div>
+
+
+
 
             {{ form_end(p) }}
+
+
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
+
+
+    <script>
+        $( ".line" ).each(function(index, element) {
+            var startDate = new Date();
+            $(this).find(".form-control-2").addClass("to"+index);
+            $('.to'+index).datepicker('setStartDate', startDate);
+        });
+    </script>
 {% endblock %}

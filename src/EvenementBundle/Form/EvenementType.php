@@ -1,29 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Hosni
- * Date: 13/02/2018
- * Time: 16:23
- */
 
-namespace MagasinBundle\Form;
-
+namespace EvenementBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RechercheMagasin extends AbstractType
+class EvenementType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('id_magasin')
+        $builder->add('dateDebut')->add('dateFin')->add('nomEvenement')->add('lieux')->add('description')
         ;
-
     }
     /**
      * {@inheritdoc}
@@ -31,14 +23,17 @@ class RechercheMagasin extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MagasinBundle\Entity\Magasin'
+            'data_class' => 'EvenementBundle\Entity\Evenement'
         ));
     }
+
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
-        return 'magasinbundle_magasin';
+        return 'evenementbundle_evenement';
     }
+
+
 }

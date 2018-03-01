@@ -1,0 +1,28 @@
+commande_homepage:
+    path:     /
+    defaults: { _controller: CommandeBundle:Default:index }
+Ajout_Panier:
+    path:     /ajout/{id}
+    defaults: { _controller: CommandeBundle:Commande:ajoutPanier  }
+Afficher_Panier:
+    path:     /Panier
+    defaults: { _controller: CommandeBundle:Commande:AfficherPanier  }
+supprimerCommande:
+    path:     /supprimerCommande/{id}
+    defaults: { _controller: CommandeBundle:Commande:supprimerCommande }
+Valider:
+    path:     /Valider
+    defaults: { _controller: CommandeBundle:Commande:Valider  }
+Panier_pdf:
+    path:     /pdf
+    defaults: { _controller: CommandeBundle:Commande:pdf }
+Vider:
+    path:     /Vider
+    defaults: { _controller: CommandeBundle:Commande:ViderPanier }
+
+_rechercheP:
+    path:     /rechercheP
+    defaults: { _controller: CommandeBundle:Commande:Recherche }
+
+
+

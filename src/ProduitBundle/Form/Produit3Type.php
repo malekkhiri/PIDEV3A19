@@ -21,8 +21,8 @@ class Produit3Type extends AbstractType
         $builder->add('nomProduit')
 
             ->add('prix')->add('description')->add('quantite')
-            ->add('brochure', FileType::class ,array('label' => 'image.jpg','data_class'=>null))
-            ->add('Valider Modification',SubmitType::class);
+            ->add('brochure', FileType::class ,array('label' => 'image.jpg','data_class'=>null));
+/*            ->add('Valider Modification',SubmitType::class);*/
 
     }/**
  * {@inheritdoc}

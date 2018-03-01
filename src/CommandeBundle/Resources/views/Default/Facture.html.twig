@@ -1,0 +1,133 @@
+{#
+{% extends "::base.html.twig" %}
+{% block content %}
+    {% set counter = 0 %}
+    <h1>Votre Facture</h1><br>
+    ******************************************<br>
+    <h2> Voici Vos Produits </h2><br>
+    {% for pr in m %}
+        <h1>nom Produit: {{ pr.id_Produit.nomProduit }}</h1><br> <br>
+        <h1>prix: {{  pr.id_Produit.prix }}</h1> <br><br>
+        <h1>description:{{ pr.id_Produit.description }}</h1> <br><br>
+        <h1>quantite:{{ pr.id_Produit.quantite }}</h1> <br><br>
+        <h1>Vendeur:{{ pr.id_Produit.idUtilisateur.username }}</h1> <br><br>
+
+    {% endfor %}
+    {% for i in m %}
+        {% set counter = counter + ((i.id_Produit.prix )*(i.id_Produit.quantite)) %}
+    {% endfor %}
+    <h3>TOTAL :{{ counter }} DT</h3>
+    *******Merci Pour Votre Visite*****
+    <a href="{{ path('produit_Affichage') }}"><button>Retourner A La PAGE  D ACEUIL</button></a>
+    <a href="{{ path('fos_user_security_logout') }}"><button>Payer Et Déconnecter</button></a>
+    <a href="{{ path('Panier_pdf') }}"><button>Telecharger PDF</button></a>
+
+
+
+
+
+
+{% endblock %}
+
+#}
+
+{% extends "::base.html.twig" %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/css/facture.css')}}" />
+
+
+    <div class="container">
+    <div class="invoice">
+        <div class="row">
+            <div class="col-7">
+                <img style="height: 100px;width: 100px" src="{{ asset('bundles/image/logo2.png') }}" class="logo">
+            </div>
+            <div class="col-5">
+                <p class="text-right"><strong>N°90T-17-01-0123</strong></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <p>
+                    <strong>90TECH SAS</strong><br>
+                    6B Rue Aux-Saussaies-Des-Dames<br>
+                    57950 MONTIGNY-LES-METZ
+                </p>
+            </div>
+            <div class="col-5">
+                <br><br><br>
+                <p>
+                    <strong>Energies54</strong><br>
+                    Réf. Client <em>{{ app.user }}</em><br>
+                    12 Rue de Verdun<br>
+                    54250 JARNY
+                </p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom du Produit</th>
+                <th>Prix du produit </th>
+                <th>Description</th>
+                <th>Nom du Vendeur</th>
+
+            </tr>
+            </thead>
+
+            {% set counter = 0 %}
+            {% for pr in m %}
+                <tbody>
+            <tr>
+                <td>{{ pr.id_Produit.nomProduit }}</td>
+
+                <td>{{  pr.id_Produit.prix }} dt</td>
+
+                <td >{{ pr.id_Produit.description }}</td>
+                <td >{{ pr.id_Produit.idUtilisateur.username }}</td>
+               <td> <a href="https://fr.coinmill.com/currency?amount={{ counter }}&from=TND&to=USD" >Convertir to Dollar</a></td>
+              <td>  <a href="https://fr.coinmill.com/currency?amount={{ counter }}&from=TND&to=EUR" >Convertir to Euro</a></td>
+            </tr>
+
+            </tbody>
+            {% endfor %}
+        </table>
+        {% for i in m %}
+            {% set counter = counter + ((i.id_Produit.prix )*(i.id_Produit.quantite)) %}
+        {% endfor %}
+        <div class="row">
+            <div class="col-8">
+            </div>
+            <div class="col-4">
+                <table class="table table-sm text-right">
+                    <tr>
+                        {% set counter = 0 %}
+
+                        {% for i in m %}
+                            {% set counter = counter + (i.id_Produit.prix ) %}
+                        {% endfor %}
+                        <h5>Prix Totale  :   {{ counter }} DT   </h5>
+
+
+
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div  class="pull-right">
+    <a href="{{ path('produit_Affichage') }}">        <input type="submit" class="btn btn-primary" value="Page d'acceuil "></a>
+    <a href="{{ path('fos_user_security_logout') }}"><input type="submit" class="btn btn-primary" value="Payée et deconnectée"></a>
+    </a>
+    <a href="{{ path('Panier_pdf') }}">      <input type="submit" class="btn btn-primary" value="telecharger la facture en pdf"></a>
+    </div>
+    </div>
+    <br><br><br><br><br>
+{% endblock %}

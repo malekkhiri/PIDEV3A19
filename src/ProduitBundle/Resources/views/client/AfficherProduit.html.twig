@@ -3,19 +3,53 @@
 {% block content %}
 
 
+<style> textarea{
+        resize:none;
+    }</style>
+<style>
+    .thumbnail {
+        padding: 0px;
+    }
 
-{#<h1 style="text-align: center; color: #cb1d1d">{{ p.nomProduit}}</h1>
+    .panel {
+        position: relative;
+    }
+
+    .panel > .panel-heading:after, .panel > .panel-heading:before {
+        position: absolute;
+        top: 11px;
+        left: -16px;
+        right: 100%;
+        width: 0;
+        height: 0;
+        display: block;
+        content: " ";
+        border-color: transparent;
+        border-style: solid solid outset;
+        pointer-events: none;
+    }
+
+    .panel > .panel-heading:after {
+        border-width: 7px;
+        border-right-color: #f7f7f7;
+        margin-top: 1px;
+        margin-left: 2px;
+    }
+
+    .panel > .panel-heading:before {
+        border-right-color: #ddd;
+        border-width: 8px;
+    }
+</style>
 
 
-    <h3>Nom du Produit :</h3> {{ p.nomProduit}} <br>
-    <h3>* Prix du Produit:</h3>      {{ p.prix }}<br>
-    <h3>* Description du Produit :</h3>     {{ p.description}}<br>
-    <h3>* Quantitée du Produit :</h3>     {{ p.quantite}}<br>#}
+
+
     <!--Middle Part Start-->
     <div class="container">
     <div id="content" class="col-sm-9">
         <div itemscope itemtype="http://schema.org/Product">
-            <h1 class="title" itemprop="name" style="color: #cb1d1d">{{ p.nomProduit}}</h1>
+            <h1 class="title" itemprop="name" style="color: #cb1d1d">{{ pro.id_produit.nomProduit}}</h1>
             <div class="row product-info">
                 <div class="col-sm-6">
                     <div class="image"><img class="img-responsive" itemprop="image" id="zoom_01" style="width: 350px ;height: 525px" src="{{ asset('bundles/uploads/brochures/'~p.brochure )}}" title="Laptop Silver black" alt="Laptop Silver black" data-zoom-image="{{ asset('bundles/iimage/product/macbook_air_1-600x900.jpg')}}" /> </div>
@@ -28,14 +62,14 @@
                         <li><b>Product Code:</b> <span itemprop="mpn">Product 17</span></li>
                         <li><b>Reward Points:</b> 700</li>
 
-                        {% if p.quantite != 0  %}
+                        {% if pro.id_produit.quantite != 0  %}
                         <li><b>Availability:</b> <span class="instock">In Stock</span></li>
                         {% else %}
                         <li><b>Availability:</b> <span class="nostock">out of Stock</span></li>
 {% endif %}
                     </ul>
                     <ul class="price-box">
-                        <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><span class="price-old">{{ p.prix }}dt</span> <span itemprop="price">{{ p.prix }}dt<span itemprop="availability" content="In Stock"></span></span></li>
+                        <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">{% if pro.pourcentage != 0 %}<span class="price-old">{{ pro.id_produit.prix }}dt</span>{% endif %} <span itemprop="price">{{ pro.id_produit.prix - (pro.id_produit.prix *pro.pourcentage) }}  dt <span itemprop="availability" content="In Stock"></span></span></li>
                         <li></li>
                         <li>Ex Tax: $950.00</li>
                     </ul>
@@ -52,7 +86,8 @@
                             </select>
                         </div>
                         <div class="cart">
-                            <div>
+
+                            <div >
                                 <div class="qty">
                                     <label class="control-label" for="input-quantity">Qty</label>
                                     <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
@@ -60,19 +95,44 @@
                                     <a class="qtyBtn mines" href="javascript:void(0);">-</a>
                                     <div class="clear"></div>
                                 </div>
-                                <button type="button" id="button-cart" class="btn btn-primary btn-lg">Add to Cart</button>
+
+                             {%  if commande == 0 %}  <a href="{{ path('Ajout_Panier', {'id':pro.idProduit.idProduit}) }}"> <button  type="button" id="button-cart" class="btn btn-primary btn-lg">Ajouter au Panier</button></a>{% else %}  <a href="{{ path('Ajout_Panier', {'id':pro.idProduit.idProduit}) }}"> <button  type="button" id="button-cart" class="btn btn-primary btn-lg">Ajouter + </button></a>{% endif %}
                             </div>
+
                             <div>
                                 <button type="button" class="wishlist" onClick=""><i class="fa fa-heart"></i> Add to Wish List</button>
                                 <br />
                                 <button type="button" class="wishlist" onClick=""><i class="fa fa-exchange"></i> Compare this Product</button>
                             </div>
+
                         </div>
                     </div>
-                    <div class="rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                    <div class="rate" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                         <meta itemprop="ratingValue" content="0" />
+{#
                         <p><span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span> <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href=""><span itemprop="reviewCount">1 reviews</span></a> / <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href="">Write a review</a></p>
+#}
+                        Like {{ nblike }}/  Dislike {{ nbdislike }}
+                        <div class="rate">
+                            <!-- Thumbs up -->
+                            <div class="like grow">
+                            <a href="{{ path('like_produit',{'id':pro.id_produit.idProduit})}}" > <i class="fa fa-thumbs-up fa-3x like" aria-hidden="true"></i></a>
+                            </div>
+                            <!-- Thumbs down -->
+                            <div class="dislike grow">
+                                <a href="{{ path('dislike_produit',{'id':pro.id_produit.idProduit})}}" > <i class="fa fa-thumbs-down fa-3x like" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+ {% for a in avis  %}
+                        {% if pro.id_produit.idProduit == a.idProduit.idProduit and  app.user == a.idUtilisateur %}
+
+                        {{ a.rating|rating(5, "fa-3x") }}
+                        {% endif %}
+
+{% endfor %}
+
                     </div>
+
                     <hr>
                     <!-- AddThis Button BEGIN -->
                     <div class="addthis_toolbox addthis_default_style"> <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal" pi:pinit:url="http://www.addthis.com/features/pinterest" pi:pinit:media="http://www.addthis.com/cms-content/images/features/pinterest-lg.png"></a> <a class="addthis_counter addthis_pill_style"></a> </div>
@@ -80,22 +140,60 @@
                     <!-- AddThis Button END -->
                 </div>
             </div>
+
+
+                {#===========================================Rating============================#}
+                <link rel="stylesheet" type="text/css" href="{{ asset('public/css/ratingg.css') }}"/>
+                {{ form_start(form1) }}
+                {{ form_widget(form1.rating       ) }}
+                {#                      <div class="contact-agileinfo">
+                                          <div class="col-md-3 " align="center">
+                                              {{ form_widget(form.commentaire,{'attr':{'id':'titre','placeholder':'Ajouter Commentaire'}    }    ) }}
+
+                                          </div>
+                                      </div>#}
+                <br>
+            <center>
+                {{ form_widget(form1.Evaluer,{'attr':{'class':'btn btn-primary btn-default mt-3','id':'','placeholder':''}    }    ) }}
+
+            </center>
+                {{ form_end(form1) }}
+                {% for a in avis %}
+                <div class="card lis-brd-light wow fadeInUp mb-2">
+                    <div class="card-body p-4">
+                        <div class="media d-block d-sm-flex text-center text-sm-left">
+                            <div class="media-body align-self-center">
+                                {# <ul class="list-inline mb-0 lis-light-gold font-weight-normal h5 float-sm-right float-none my-md-0 my-3">
+                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                 </ul>#}
+                                {# <p>{{ a.rating|rating }}</p>#}
+                                {#{{ a.rating |rating  }}#}
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <script src="{{ asset('bundles/js/jquery-2.1.1.min.js') }}"></script>
+                <script src="{{ asset('bundles/js/ratingg.js') }}"></script>
+                {#===========================================Rating============================#}
+
+
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#tab-description" data-toggle="tab">Description</a></li>
                 <li><a href="#tab-specification" data-toggle="tab">Specification</a></li>
-                <li><a href="#tab-review" data-toggle="tab">Reviews (2)</a></li>
+                <li><a href="#tab-review" data-toggle="tab">Reviews( {{ com }} )</a></li>
             </ul>
             <div class="tab-content">
                 <div itemprop="description" id="tab-description" class="tab-pane active">
                     <div>
-                        <p><b>Intel Core 2 Duo processor</b></p>
-                        <p>Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.</p>
-                        <p><b>1GB memory, larger hard drives</b></p>
-                        <p>The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.</p>
-                        <p><b>Sleek, 1.08-inch-thin design</b></p>
-                        <p>MacBook makes it easy to hit the road thanks to its tough polycarbonate case, built-in wireless technologies, and innovative MagSafe Power Adapter that releases automatically if someone accidentally trips on the cord.</p>
-                        <p><b>Built-in iSight camera</b></p>
-                        <p>Right out of the box, you can have a video chat with friends or family,2 record a video at your desk, or take fun pictures with Photo Booth</p>
+                        {{ pro.id_produit.description}}
                     </div>
                 </div>
                 <div id="tab-specification" class="tab-pane">
@@ -129,51 +227,47 @@
                     </div>
                 </div>
                 <div id="tab-review" class="tab-pane">
-                    <form class="form-horizontal">
+
                         <div id="review">
-                            <div>
+
+                                {% for comment in c %}
                                 <table class="table table-striped table-bordered">
                                     <tbody>
                                     <tr>
-                                        <td style="width: 50%;"><strong><span>harvey</span></strong></td>
-                                        <td class="text-right"><span>20/01/2016</span></td>
+                                        <td style="width: 50%;"><strong><span>{{  comment.commentator.username }}</span></strong></td>
+                                        <td class="text-right"><span>{{ comment.creationDate|date("m/d/Y") }}</span></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                            <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> </div></td>
-                                    </tr>
+                                        <td colspan="2"><p>{{  comment.Contenu }} </p>
+                                                                       </tr>
                                     </tbody>
+                                    {% if comment.commentator == app.user %}
+                                    <td><a href="{{ path('supp_comm',{'id':comment.id,'idp':comment.commentedproduct.idProduit} )}}">supprimer</a></td>
+                                    {% endif %}
+
+                                    {{ time_diff(comment.creationDate) }}
                                 </table>
-                                <table class="table table-striped table-bordered">
-                                    <tbody>
-                                    <tr>
-                                        <td style="width: 50%;"><strong><span>Andrson</span></strong></td>
-                                        <td class="text-right"><span>20/01/2016</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                            <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="text-right"></div>
+                            {% endfor %}
+
+
                         </div>
-                        <h2>Write a review</h2>
-                        <div class="form-group required">
-                            <div class="col-sm-12">
-                                <label for="input-name" class="control-label">Your Name</label>
-                                <input type="text" class="form-control" id="input-name" value="" name="name">
-                            </div>
-                        </div>
+                    <div class="form-horizontal">
+
+                        {{ form_start(form) }}
+                        {{ form_widget(form.contenu) }}
+                        <!-- /panel-body -->
+                        <input type="submit" class=" btn btn-primary col-lg-push-3" value="Commenter" style="float: right;">
+                        {{ form_end(form) }}
+
                         <div class="form-group required">
                             <div class="col-sm-12">
                                 <label for="input-review" class="control-label">Your Review</label>
-                                <textarea class="form-control" id="input-review" rows="5" name="text"></textarea>
-                                <div class="help-block"><span class="text-danger">Note:</span> HTML is not translated!</div>
+
+
                             </div>
                         </div>
-                        <div class="form-group required">
+
+                       {# <div class="form-group required">
                             <div class="col-sm-12">
                                 <label class="control-label">Rating</label>
                                 &nbsp;&nbsp;&nbsp; Bad&nbsp;
@@ -186,14 +280,13 @@
                                 <input type="radio" value="4" name="rating">
                                 &nbsp;
                                 <input type="radio" value="5" name="rating">
-                                &nbsp;Good</div>
-                        </div>
-                        <div class="buttons">
-                            <div class="pull-right">
-                                <button class="btn btn-primary" id="button-review" type="button">Continue</button>
+                                &nbsp;Good
                             </div>
-                        </div>
-                    </form>
+                        </div>#}
+
+
+
+                    </div>
                 </div>
             </div>
             <h3 class="subtitle">Related Products</h3>
@@ -414,11 +507,20 @@
             $.swipebox(ez.getGalleryList());
             return false;
         });
+
+
+        $('.rating input').change(function () {
+            var $radio = $(this);
+            $('.rating .selected').removeClass('selected');
+            $radio.closest('label').addClass('selected');
+        });
+
     </script>
     <!-- JS Part End-->
 
 
 {% endblock %}
+
 
 
 

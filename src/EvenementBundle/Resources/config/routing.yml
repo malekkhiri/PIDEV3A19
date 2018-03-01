@@ -1,3 +1,36 @@
 evenement_homepage:
-    path:     /
+    path:     /home
     defaults: { _controller: EvenementBundle:Default:index }
+_ajoutEvenement:
+    path:     /ajout
+    defaults: { _controller: EvenementBundle:Evenement:Ajout }
+_afficheEvenement:
+    path:     /affiche
+    defaults: { _controller: EvenementBundle:Evenement:Affiche }
+_modifier:
+    path:     /modifier/{id}
+    defaults: { _controller: EvenementBundle:Evenement:Modifier }
+_supprimerEvenement:
+    path:     /supprimer/{id}
+    defaults: { _controller: EvenementBundle:Evenement:Supprimer }
+_affiche2:
+    path:     /affiche2
+    defaults: { _controller: EvenementBundle:Evenement:AfficheDQL }
+_ajoutComment:
+    path:     /comment/{id}
+    defaults: { _controller: EvenementBundle:Comment:Comment }
+_singleEvent:
+    path:     /singleEvent/{id}
+    defaults: { _controller: EvenementBundle:Evenement:AfficheEvent }
+_afficheCommentaire:
+    path:     /afficheCommentaire/{id}
+    defaults: { _controller: EvenementBundle:Comment:AfficheCommentaire }
+_recherche1:
+    path:     /recherche1
+    defaults: { _controller: EvenementBundle:Evenement:Recherche1 }
+_recherche:
+    path:     /recherche
+    defaults: { _controller: EvenementBundle:Evenement:Recherche }
+_participer:
+    path:     /participer/{id}
+    defaults: { _controller: EvenementBundle:Evenement:Participer }

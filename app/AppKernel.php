@@ -23,6 +23,18 @@ class AppKernel extends Kernel
             new ReclamationBundle\ReclamationBundle(),
             new EvenementBundle\EvenementBundle(),
             new MagasinBundle\MagasinBundle(),
+            new Knp\Bundle\TimeBundle\KnpTimeBundle(),
+            new CommandeBundle\CommandeBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+            new GrapheBundle\GrapheBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
+            new VenteLibreBundle\VenteLibreBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
+            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

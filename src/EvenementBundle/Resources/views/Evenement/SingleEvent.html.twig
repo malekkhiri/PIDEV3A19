@@ -1,0 +1,57 @@
+{#{% extends '::base.html.twig' %}
+{% block content %}
+<table class="table">
+<td>{{ event.nomEvenement }}</td>
+    <td>{{ event.dateDebut|date("y-m-d") }}</td>
+    <td>{{ event.dateFin|date("y-m-d") }}</td>
+    <td>{{ event.Lieux}}</td>
+    <td>{{ event.Description}}</td>
+    <td><a href="{{ path('_afficheCommentaire',{'id':event.id}) }}">Show Comment</a> </td>
+<td>  <a href="{{ path('_participer',{'id' :event.id}) }}">
+            <input type="submit" class=" btn btn-primary col-lg-push-3" value="Participer">
+        </div>
+    </a></td>
+</table>
+
+
+{% endblock %}#}
+
+{% extends '::base.html.twig' %}
+{% block content %}
+    <link href="{{ asset('bundles/css/affiche2.css')}}" rel='stylesheet' type='text/css' />
+
+    <figure class="intro">
+    <img src="https://previews.123rf.com/images/luckybusiness/luckybusiness1205/luckybusiness120500138/13524362-lampes-traditionnelles-%C3%A0-vendre-dans-un-souk-marocain-marrakech.jpg" alt="" />
+    <figcaption class="caption">
+        <h1>{{ event.nomEvenement }}</h1>
+    </figcaption>
+    <span class="overlay">
+<svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 500 250" enable-background="new 0 0 500 250" xml:space="preserve" PreserveAspectRatio="none">
+<path fill="#FFFFFF" d="M250,246.5c-97.85,0-186.344-40.044-250-104.633V250h500V141.867C436.344,206.456,347.85,246.5,250,246.5z"
+/>
+</svg>
+  </span>
+</figure>
+<article class="copy">
+    <h3>{{ event.Description}} <a href="{{ path('_afficheCommentaire',{'id':event.id}) }}">Show Comment</a>
+    </h3>
+    <h1> lieux  :{{ event.Lieux}}</h1>
+    <h1> en : {{ event.dateDebut|date("y-m-d") }}</h1>
+    <h1> jusqu'a :{{ event.dateFin|date("y-m-d") }}</h1>
+    <br><br><br>
+
+
+    <td>  <a href="{{ path('_participer',{'id' :event.id}) }}">
+            <input type="submit" class=" btn btn-primary col-lg-push-3" value="Participer"></a>
+    </td>
+    <br>
+    <br>
+    <br>
+
+
+
+
+</article>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+
+{% extends "ProjetBundle:back:index2.html.twig" %}
+{% block container %}
+    <h1 style="text-align: center; color: #cb1d1d"> Liste des Produits</h1>
+
+    <br>
+
+
+    <table class="table">
+        <section class="tableau">
+
+
+            <tr>
+
+                <th class="cellule">Nom du Produit</th>
+                <th class="cellule">Prix du Produit</th>
+                <th class="cellule">Quantite</th>
+                <th class="cellule">Description</th>
+                <th class="cellule">Image</th>
+                <th></th>
+                <th></th>
+
+
+
+
+            </tr>
+
+
+            {% for produit in p %}
+                <tr>
+
+
+                    <td>{{ produit.nomProduit }}</td>
+                    <td>{{ produit.prix }}</td>
+                    <td>{{ produit.quantite }}</td>
+                    <td>{{ produit.description }}</td>
+                    <td>  <a href="{{ asset('bundles/uploads/brochures/'~produit.brochure )}}"><img style="width: 100px ;height: 100px" src="{{ asset('bundles/uploads/brochures/'~produit.brochure )}}"></a></td>
+                    <td>
+                    {{ produit.validated }}
+
+                    <a href="{{ path('admin-validate-produit', { 'id': produit.idProduit } )}}">
+
+                        <img  src="{{ asset('bundles/image/ok.png' )}}"   style="color: green; height: 30px; width: 30px;">
+
+                    </a>
+                    <a href="{{ path('produit_supprimer', { 'id': produit.idProduit } )}}">
+
+                        <img  src="{{ asset('bundles/image/not.png' )}}"   style="color: green; height: 30px; width: 30px;"></a>
+
+                    </td>
+
+
+
+                </tr>
+
+            {% endfor %}
+
+
+        </section>
+
+    </table>
+
+
+
+{% endblock %}
+

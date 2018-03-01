@@ -52,6 +52,29 @@
 
 {% extends "::base.html.twig" %}
 {% block content %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".product-thumb").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        // Store link with class `Supprimer` to a variable
+        var $Supprimer = $('.Supprimer');
+
+        // Hide it
+        $Supprimer.hide();
+
+        // Show it when the link with class `Ajout` is clicked
+        $('.Ajout').on('click', function(e) {
+            e.preventDefault();
+            $Supprimer.show();
+        });
+    </script>
     {#
         <h1 style="text-align: center; color: #cb1d1d"> Liste des Produits</h1>
     #}
@@ -112,6 +135,9 @@
                 <a href="{{ path('produit_Affichage') }}"> <h6 style="text-align: center" class="agileits-title">Gerer Les Produit </h6> </a>
             {% endif %}
 
+
+
+
             {# =====================================================================
 
 
@@ -133,28 +159,44 @@
 
              =====================================================================
  #}
-            {% for produit in p %}
+
+
+            <h3 class="subtitle">Chercher un Produit  <input id="myInput" class="form-control" type="text" placeholder="Chercher .."></h3>
+<br><br><br>
+            <a href="{{ path('Afficher_Panier') }}"><h5 style="text-align: center">Voir Votre Panier </h5></a>
+            <br><br><br>
+
+            {% for produit in produit %}
+                {% if produit.Validated ==1 %}
+            <div class="product-thumb">
 
                 <div class="col-sm-4 col-xs-6 w3gallery-grids">
                     <div class="imghvr-hinge-right figure">
+
                         {#<img src="{{ asset('bundles/template/images/g3.jpg')}}" alt="" title="Pets Care Image"/>#}
                             <img style="width: 360px; height: 360px" src="{{ asset('bundles/uploads/brochures/'~(produit.brochure) )}}">
-                            <div class="agile-figcaption">
+                            <div class="agile-figcaption" >
 
                                 <h4>Souk el Mdina </h4>
+                                <tr class="product-thumb">
+                                <p>Nom du Produit : {{ produit.nomProduit}}</p>
+                            <p>Prix du Produit : {{ produit.prix}}</p>
+                            <p> Quantitée : {{ produit.quantite}}</p>
+                            <p>Description : {{ produit.description}}</p>
 
-                                <p>{{ produit.nomProduit}}</p>
-                            <p>{{ produit.prix}}</p>
-                            <p>{{ produit.quantite}}</p>
-                            <p>{{ produit.description}}</p>
                                 <a  href="{{ path('afficher_Produit',{'id':produit.idProduit} )}} "> <input type="submit" style="position: absolute ;bottom: 30%;left:40% ; " value="Detaill" class=" btn btn-primary col-lg-push-3"> </a>
+                                    <br>
+{#
+                                    <a  href="{{ path('Ajout_Panier', {'id':produit.idProduit}) }}"class="Ajout"><input type="submit" style="position: absolute ;bottom: 10%;left:30% ; " value="Ajouter au Panier" class=" btn btn-primary col-lg-push-3"></a> </td>
+#}
+                {% endif %}
+
 
                                 <br>
                                 <br>
                                 <br>
-                                <br>
 
-
+                            </div>
                             </div>
 
 
@@ -163,14 +205,29 @@
 
                 </div>
 
+
+
+
+
             {% endfor%}
 
 
-            <div class="clearfix"> </div>
-        </a>
+
+
+
+
+
         </div>
     </div>
+
+
+    <div class="navigation" style="text-align: center">
+        {{ knp_pagination_render(produit) }}
     </div>
+
+
+    </div>
+
 
 {% endblock %}
 

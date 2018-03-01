@@ -1,3 +1,26 @@
 reclamation_homepage:
     path:     /
     defaults: { _controller: ReclamationBundle:Default:index }
+
+_ajout:
+    path:     /ajoutRec
+    defaults: { _controller: ReclamationBundle:Reclamation:Ajout }
+
+_affiche:
+    path:     /afficheRec
+    defaults: { _controller: ReclamationBundle:Reclamation:Affiche }
+
+_afficheV:
+    path:     /afficheVendeurRec
+    defaults: { _controller: ReclamationBundle:Reclamation:AfficheVendeur }
+
+_supprimer:
+    path:     /supprimerRec{idReclamation}
+    defaults: { _controller: ReclamationBundle:Reclamation:Supprimer }
+
+
+_int:
+    path:     /int
+    defaults: { _controller: ReclamationBundle:Reclamation:int }
+
+

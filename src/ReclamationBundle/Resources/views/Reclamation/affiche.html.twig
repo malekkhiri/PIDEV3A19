@@ -1,0 +1,121 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+    <style>
+        .pagination
+        {
+            display: inline-block;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+
+        .pagination a
+        {
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        body {
+            padding: 30px;
+        }
+        header {
+            background: lightblue;
+        }
+        section {
+            background: lightcoral;
+            width: 75%;
+            float: left;
+        }
+        article {
+            background: white;
+            margin: 0 0 1rem 0;
+        }
+        aside {
+            background: pink;
+            width: 25%;
+            float: right;
+        }
+        header, article, section, .module {
+            padding: 1rem;
+        }
+        </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#rec").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".jquery").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+{#<h1 style="text-align: center; color: goldenrod">Liste des Reclamations</h1>
+
+    <h4 class="subtitle" style="color: goldenrod">Nom Destintaire <input id="rec" class="form-control" type="text" placeholder="Chercher Nom Destinataire ..."></h4>
+    <table class="table">
+        <tr>
+        <th style="color: goldenrod">Nom Destinataire</th>
+        <th style="color: goldenrod">Contenu</th>
+        <th style="color: goldenrod">Supprimer</th>
+        <th></th>
+        </tr>
+        {% for reclamations in pagination %}
+         <tr class="jquery">
+                <td>{{ reclamations.nomDestinataire }}</td>
+             <td>{{ reclamations.contenu }}</td>
+
+             <td>
+                 <a href="{{ path('_supprimer',{'idReclamation':reclamations.idReclamation}) }}">Supprimer</a>
+             </td>
+             <td>{{ time_diff(reclamations.date) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="pagination">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    </br></br></br>
+    <a href="{{ path('_ajout') }}"> <h3 style="text-align: center ">Envoyer une Reclamation</h3></a>
+
+{% endblock %}#}
+    </br></br></br></br></br></br>
+    <div class="container">
+
+<h4 class="subtitle" style="color: goldenrod">Nom Emetteur <input id="rec" class="form-control" type="text" placeholder="Chercher Nom Destinataire ..."></h4>
+
+
+<main>
+
+    <section>
+        {% for reclamations in pagination %}
+        <article class="jquery">
+
+            <h2>{{ reclamations.nomDestinataire }}</h2>
+            <p> Contenue du Reclamation: {{ reclamations.contenu }}</p>
+            <p> Emetteur: {{ reclamations.emetteur }}</p>
+           <p> <a href="{{ path('_supprimer',{'idReclamation':reclamations.idReclamation}) }}">Supprimer</a></p>
+            <p>{{ time_diff(reclamations.date) }}</p>
+        </article>
+            {% endfor %}
+
+
+
+    </section>
+</main>
+        </br></br></br></br></br></br></br>
+        </br></br></br></br></br></br></br></br>
+        </br></br></br></br></br></br></br></br></br>
+<div class="pagination">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
+<a href="{{ path('_ajout') }}"> <h3 style="text-align: center ">Envoyer une Reclamation</h3></a>
+    </div>
+    </br></br></br></br></br></br>
+{% endblock %}

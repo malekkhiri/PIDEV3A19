@@ -1,0 +1,27 @@
+{#
+{% extends "::base.html.twig" %}
+{% block content %}
+<h1>Votre Panier est vide</h1>
+<a href="{{ path('produit_Affichage') }}"><h5 style="text-align: center">Acheter des Produit</h5></a>
+{% endblock %}#}
+{% extends "::base.html.twig" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/css/va.css')}}" />
+    <br><br><br><br><br><br>
+    <center>
+    <image style="width: 10%" src="{{ asset('bundles/image/pannier.png') }}"></image>
+    </center>
+<div class="container">
+    <div class="rectangle">
+        <div class="notification-text">
+            <span>&nbsp;&nbsp;Votre Pannier est vide veuillez choisir un Produi à Acheter.</span>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br>
+
+
+</div>
+    <a href="{{ path('list') }}"><h5 style="text-align: center">Acheter des Produit</h5></a>
+    <br><br><br><br><br><br>
+
+{% endblock %}

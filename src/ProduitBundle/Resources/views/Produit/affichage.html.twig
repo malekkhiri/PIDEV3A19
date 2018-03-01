@@ -1,55 +1,160 @@
 
+
 {% extends "::base.html.twig" %}
-{% block content %}
-    <h1 style="text-align: center; color: #cb1d1d"> Liste des Produits</h1>
 
-    <br>
+{% block content  %}
+    <style>
 
+        thead th {
 
-    <table class="table">
-        <section class="tableau">
-
-
-        <tr>
-
-           <th class="cellule">Nom du Produit</th>
-            <th class="cellule">Prix du Produit</th>
-            <th class="cellule">Quantite</th>
-            <th class="cellule">Description</th>
-            <th class="cellule">Image</th>
-           <th class="cellule">Modifier</th>
-            <th class="cellule">Supprimer</th>
-
-
-
-        </tr>
+            font-family: 'Patua One', cursive;
+            font-size:16px;
+            font-weight:400;
+            color:#fff;
+            text-shadow:1px 1px 0px rgba(0,0,0,0.5);
+            text-align:left;
+            padding:20px;
+            background-color: #ff756b;
+            linear-gradient: #5e51fb;
+            border-top:1px solid #3626fb;}
+        * {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
 
 
-        {% for produit in p %}
+        .table {
+
+            border-collapse: separate;
+            background:#fff;
+            border-radius:5px;
+            margin:50px auto;
+            box-shadow:0px 0px 5px rgba(0,0,0,0.3);
+        }
+
+        thead {
+            border-radius:5px;
+        }
+
+
+        first-child {
+            border-top-left-radius:5px;
+        }
+
+        last-child {
+        border-top-right-radius(5px);
+        }
+
+
+        tbody tr td {
+            font-family: 'Open Sans', sans-serif;
+            font-weight:400;
+            color:#5f6062;
+            font-size:13px;
+            padding:20px 20px 20px 20px;
+            border-bottom:1px solid #e0e0e0;
+
+        }
+
+        tbody tr:nth-child(2n) {
+            background:#f0f3f5;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        first-child {
+        border-bottom-left-radius(5px);
+        }
+        last-child {
+        border-bottom-right-radius(5px);
+        }
+
+
+        tbody:hover > tr td {
+            opacity:0.5;
+
+            /* uncomment for blur effect */
+            /* color:transparent;
+            @include text-shadow(0px 0px 2px rgba(0,0,0,0.8));*/
+        }
+
+        tbody:hover > tr:hover td {
+            text-shadow:none;
+            color:#2d2d2d;
+            opacity:1.0;
+        }
+
+
+    </style>
+
+
+
+    {#<link href="{{ asset('bundles/css/tables.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/css/Tables.css')}}" />
+#}
+
+
+
+    <div style="padding-top: 5%; padding-bottom: 5%; text-align: center;  ">
+
+        <h1>Products TABLE</h1>
+
+        <table class="table" >
+            <thead>
+
             <tr>
 
+                <th class="cellule">Nom du Produit</th>
+                <th class="cellule">Prix du Produit</th>
+                <th class="cellule">Quantite</th>
+                <th class="cellule">Description</th>
+                <th class="cellule">Image</th>
+                <th class="cellule">Faire une Promotion </th>
+                <th class="cellule">Modifier</th>
+                <th class="cellule">Supprimer</th>
 
-                <td>{{ produit.nomProduit }}</td>
-                <td>{{ produit.prix }}</td>
-                <td>{{ produit.quantite }}</td>
-                <td>{{ produit.description }}</td>
-                <td>  <a href="{{ asset('bundles/uploads/brochures/'~produit.brochure )}}"><img style="width: 100px ;height: 100px" src="{{ asset('bundles/uploads/brochures/'~produit.brochure )}}"></a></td>
-                <td><a href="{{ path('produit_modifier',{'id':produit.idProduit} )}}">modifier image</a></td>
-                <td><a href="{{ path('produit_modif',{'id':produit.idProduit} )}}">modifier</a></td>
-                <td><a href="{{ path('produit_supprimer',{'id':produit.idProduit} )}}">supprimer</a></td>
+
+
 
             </tr>
+            </thead>
+            <tbody>
+            {% for produit in prom  %}
 
-        {% endfor %}
+                <tr>
+
+                    <td>{{ produit.idProduit.nomProduit }}</td>
+                    <td>{{ produit.idProduit.prix }}</td>
+                    <td>{{ produit.idProduit.quantite }}</td>
+                    <td>{{ produit.idProduit.description }}</td>
 
 
-        </section>
 
-    </table>
 
-<br>
-<a href="{{ path('produit_Ajout') }}" > <h5 style="text-align: center">Ajouter un nouveaux Produit </h5></a>
-    <br>
+                    <td>  <a href="{{ asset('bundles/uploads/brochures/'~produit.idProduit.brochure )}}"><img style="width: 100px ;height: 100px" src="{{ asset('bundles/uploads/brochures/'~produit.idProduit.brochure )}}"></a></td>
+                    <td> {% if produit.pourcentage == 0 %}<a href="{{ path('ajout_promotion',{'id':produit.idProduit.idProduit,'idm':produit.idProduit.idMagasin.idMagasin}) }}"> <img style="width: 100px ;height: 100px" src="{{ asset('bundles/image/promotion.png') }}"></a>{% else %}<a href="{{ path('ajout_promotion',{'id':produit.idProduit.idProduit,'idm':produit.idProduit.idMagasin.idMagasin}) }}"><img style="width: 100px ;height: 100px" src="{{ asset('bundles/image/enProm.png') }}"> {% endif %}</a></td>
+                    <td><a href="{{ path('produit_modifier',{'id':produit.idProduit.idProduit} )}}">modifier</a></td>
+                    <td><a href="{{ path('produit_supprimer',{'id':produit.idProduit.idProduit} )}}">supprimer</a></td>
+                </tr>
 
-  {% endblock %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+        {#   <a class="btn btn-default btn-green" href="{{ path('event_new') }}">Host a new Event </a>
+           <a class="btn btn-default btn-green" href="{{ path('myevents') }}">Check my events</a>#}
+
+    </div>
+    </div>
+{% endblock %}
+
 

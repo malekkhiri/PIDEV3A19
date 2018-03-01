@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
+
 /**
  * Produit
  *
@@ -31,9 +32,49 @@ class Produit
     private $id_utilisateur;
 
     /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="MagasinBundle\Entity\Magasin")
+     * @ORM\JoinColumn(name="id_magasin",referencedColumnName="id_magasin")
+     */
+    private $id_magasin;
+
+    /**
      * @return mixed
      */
+    public function getIdMagasin()
+    {
+        return $this->id_magasin;
+    }
 
+    /**
+     * @param mixed $id_magasin
+     */
+    public function setIdMagasin($id_magasin)
+    {
+        $this->id_magasin = $id_magasin;
+    }
+
+
+    /**
+     * @ORM\Column(type="integer",options={"default" : 0},nullable=true)
+     */
+    protected $Validated ;
+
+    /**
+     * @return mixed
+     */
+    public function getValidated()
+    {
+        return $this->Validated;
+    }
+
+    /**
+     * @param mixed $Validated
+     */
+    public function setValidated($Validated)
+    {
+        $this->Validated = $Validated;
+    }
 
     public function getIdUtilisateur()
     {
@@ -47,6 +88,7 @@ class Produit
     {
         $this->id_utilisateur = $id_utilisateur;
     }
+
 
 
 
@@ -97,6 +139,8 @@ class Produit
     {
         return $this->id_Produit;
     }
+
+
 
 
 
@@ -220,7 +264,51 @@ class Produit
         return $this;
     }
 
+    /**
+     * @ORM\OneToMany(targetEntity="CommandeBundle\Entity\Commande", mappedBy="Produit")
+     */
+    public $idcommande;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idcommande = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add idcommande
+     *
+     * @param \CommandeBundle\Entity\Commande $idcommande
+     *
+     * @return Produit
+     */
+    public function addIdcommande(\CommandeBundle\Entity\Commande $idcommande)
+    {
+        $this->idcommande[] = $idcommande;
+
+        return $this;
+    }
+
+    /**
+     * Remove idcommande
+     *
+     * @param \CommandeBundle\Entity\Commande $idcommande
+     */
+    public function removeIdcommande(\CommandeBundle\Entity\Commande $idcommande)
+    {
+        $this->idcommande->removeElement($idcommande);
+    }
+
+    /**
+     * Get idcommande
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdcommande()
+    {
+        return $this->idcommande;
+    }
 
 
 }

@@ -1,3 +1,16 @@
+vente_libre:
+    resource: "@VenteLibreBundle/Resources/config/routing.yml"
+    prefix:   /v
+
+graphe:
+    resource: "@GrapheBundle/Resources/config/routing.yml"
+    prefix:   /g
+
+commande:
+    resource: "@CommandeBundle/Resources/config/routing.yml"
+    prefix:   /c
+
+
 magasin:
     resource: "@MagasinBundle/Resources/config/routing.yml"
     prefix:   /Magasin
@@ -5,6 +18,9 @@ magasin:
 evenement:
     resource: "@EvenementBundle/Resources/config/routing.yml"
     prefix:   /e
+graphe:
+    resource: "@GrapheBundle/Resources/config/routing.yml"
+    prefix:   /g
 
 rclamation:
     resource: "@ReclamationBundle/Resources/config/routing.yml"
@@ -27,3 +43,4 @@ app:
     type: annotation
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+

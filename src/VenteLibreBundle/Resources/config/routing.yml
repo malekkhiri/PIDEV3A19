@@ -1,0 +1,24 @@
+vente_libre_homepage:
+    path:     /
+    defaults: { _controller: VenteLibreBundle:Default:index }
+ajout_vente:
+    path:     /ajout
+    defaults: { _controller: VenteLibreBundle:Annonces:Ajout }
+affiche_vente:
+    path:     /affiche
+    defaults: { _controller: VenteLibreBundle:Annonces:Affiche }
+modifier_vente:
+    path:     /modifier{idVenteLibre}
+    defaults: { _controller: VenteLibreBundle:Annonces:Modifier }
+supprimer_vente:
+    path:     /supprimer{idVenteLibre}
+    defaults: { _controller: VenteLibreBundle:Annonces:supprimer }
+recherche_vente:
+    path:     /recherche
+    defaults: { _controller: VenteLibreBundle:Annonces:Recherche }
+touannonces:
+    path:     /allannounce
+    defaults: { _controller: VenteLibreBundle:Annonces:AfficheTout }
+annonce_view:
+    path:     /view/{id}
+    defaults: { _controller: VenteLibreBundle:Annonces:View }

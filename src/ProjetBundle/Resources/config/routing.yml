@@ -15,6 +15,9 @@ reg:
 
 back_office:
     path:     /b
+    defaults: { _controller: ProjetBundle:Backoffice:back2 }
+back2_office:
+    path:     /b2
     defaults: { _controller: ProjetBundle:Backoffice:back }
 table:
     path:     /t
@@ -26,3 +29,26 @@ rech:
 _sup:
     path:     /sup/{id}
     defaults: { _controller: UserBundle:User:sup }
+Produit_T:
+    path:     /prod/
+    defaults: { _controller: ProduitBundle:Produit:List2 }
+
+admin-validate-produit:
+    path:     /admin/produitvalidate/{id}
+    defaults: { _controller: ProduitBundle:Produit:validate }
+produit_supprim:
+    path:     /supp/{id}
+    defaults: { _controller: ProduitBundle:Produit:supr }
+
+_graphePie:
+    path: /pie
+    defaults: { _controller: GrapheBundle:Default:index}
+appannoce:
+    path:     /appannoce
+    defaults: { _controller: ProjetBundle:Backoffice:ApprouverAnnonce}
+Accepter:
+    path:     /Accepter/{id}
+    defaults: { _controller: ProjetBundle:Backoffice:Accepter}
+_supprimerannonce:
+    path:     /supprimer/{idVenteLibre}
+    defaults: { _controller:  ProjetBundle:Backoffice:SupprimerAnnonce }

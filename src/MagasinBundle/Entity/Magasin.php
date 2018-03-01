@@ -4,11 +4,12 @@ namespace MagasinBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Magasin
  *
  * @ORM\Table(name="magasin")
- * @ORM\Entity(repositoryClass="MagasinBundle\Repository\MagasinRepository")
+ * @ORM\Entity()
  */
 class Magasin
 {
@@ -17,109 +18,64 @@ class Magasin
      *
      * @ORM\Column(name="id_magasin", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue
      */
     private $id_magasin;
+
+
+
+
 
     /**
      * @var string
      *
      * @ORM\Column(name="nom_magasin", type="string", length=255)
      */
-    private $nomMagasin;
+    private $nom_magasin;
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="prop_magasin",referencedColumnName="id")
+     */
+    private $prop_magasin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prop_magasin", type="string", length=255)
+     * @ORM\Column(name="adresse_magasin", type="string", length=255)
      */
-    private $propMagasin;
+    private $adresse_magasin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="addresse_magasin", type="string", length=255)
+     * @ORM\Column(name="region", type="string", length=255)
      */
-    private $addresseMagasin;
+    private $region;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
+
 
 
     /**
-     * Get id
+     * Set idMagasin
      *
-     * @return int
-     */
-
-
-    /**
-     * Set nomMagasin
-     *
-     * @param string $nomMagasin
+     * @param integer $idMagasin
      *
      * @return Magasin
      */
-    public function setNomMagasin($nomMagasin)
+    public function setIdMagasin($idMagasin)
     {
-        $this->nomMagasin = $nomMagasin;
+        $this->id_magasin = $idMagasin;
 
         return $this;
-    }
-
-    /**
-     * Get nomMagasin
-     *
-     * @return string
-     */
-    public function getNomMagasin()
-    {
-        return $this->nomMagasin;
-    }
-
-    /**
-     * Set propMagasin
-     *
-     * @param string $propMagasin
-     *
-     * @return Magasin
-     */
-    public function setPropMagasin($propMagasin)
-    {
-        $this->propMagasin = $propMagasin;
-
-        return $this;
-    }
-
-    /**
-     * Get propMagasin
-     *
-     * @return string
-     */
-    public function getPropMagasin()
-    {
-        return $this->propMagasin;
-    }
-
-    /**
-     * Set addresseMagasin
-     *
-     * @param string $addresseMagasin
-     *
-     * @return Magasin
-     */
-    public function setAddresseMagasin($addresseMagasin)
-    {
-        $this->addresseMagasin = $addresseMagasin;
-
-        return $this;
-    }
-
-    /**
-     * Get addresseMagasin
-     *
-     * @return string
-     */
-    public function getAddresseMagasin()
-    {
-        return $this->addresseMagasin;
     }
 
     /**
@@ -131,4 +87,148 @@ class Magasin
     {
         return $this->id_magasin;
     }
+
+    /**
+     * Set nomMagasin
+     *
+     * @param string $nomMagasin
+     *
+     * @return Magasin
+     */
+    public function setNomMagasin($nomMagasin)
+    {
+        $this->nom_magasin = $nomMagasin;
+
+        return $this;
+    }
+
+    /**
+     * Get nomMagasin
+     *
+     * @return string
+     */
+    public function getNomMagasin()
+    {
+        return $this->nom_magasin;
+    }
+
+    /**
+     * Set propMagasin
+     *
+     * @param string $propMagasin
+     *
+     * @return Magasin
+     */
+    public function setPropMagasin($propMagasin)
+    {
+        $this->prop_magasin = $propMagasin;
+
+        return $this;
+    }
+
+    /**
+     * Get propMagasin
+     *
+     * @return string
+     */
+    public function getPropMagasin()
+    {
+        return $this->prop_magasin;
+    }
+
+    /**
+     * Set adresseMagasin
+     *
+     * @param string $adresseMagasin
+     *
+     * @return Magasin
+     */
+    public function setAdresseMagasin($adresseMagasin)
+    {
+        $this->adresse_magasin = $adresseMagasin;
+
+        return $this;
+    }
+
+    /**
+     * Get adresseMagasin
+     *
+     * @return string
+     */
+    public function getAdresseMagasin()
+    {
+        return $this->adresse_magasin;
+    }
+
+    /**
+     * Set region
+     *
+     * @param string $region
+     *
+     * @return Magasin
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Magasin
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @ORM\Column(type="integer",options={"default" : 0},nullable=true)
+     */
+    protected $Validated ;
+
+    /**
+     * @return mixed
+     */
+    public function getValidated()
+    {
+        return $this->Validated;
+    }
+
+    /**
+     * @param mixed $Validated
+     */
+    public function setValidated($Validated)
+    {
+        $this->Validated = $Validated;
+    }
+
+
+
 }

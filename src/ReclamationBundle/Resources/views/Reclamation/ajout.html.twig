@@ -1,0 +1,79 @@
+{#{% extends "::base.html.twig" %}
+
+{% block content %}
+
+<div class="container">
+
+
+<h1 style="text-align: center; color: goldenrod">Envoyer Reclamation</h1>
+
+{{ form_start(form) }}
+
+<div class="form-group required">
+    {{ form_label(form.nomDestinataire, 'Nom Destinataire', {'label_attr' :{'class': 'col-sm-2 control-label'}}) }}
+    <div class="col-sm-10">
+        {{ form_widget(form.nomDestinataire, {'attr':{'class':'form-control','placeholder':'Nom Destinataire'}}) }}
+    </div>
+</div>
+
+
+
+
+<div class="form-group required">
+    {{ form_label(form.contenu, 'Contenu', {'label_attr' :{'class': 'col-sm-2 control-label'}}) }}
+    <div class="col-sm-10">
+        {{ form_widget(form.contenu, {'attr':{'class':'form-control','placeholder':'Contenu'}}) }}
+    </div>
+</div>
+
+<div class="pull-right">
+    <br>
+    <input type="submit" class=" btn btn-primary col-lg-push-3" value="Envoyer une Reclamation">
+    <br><br><br><br><br>
+</div>
+
+
+
+{{ form_end(form) }}
+</div>
+{%  endblock %}#}
+
+{% extends "::base.html.twig" %}
+
+{% block content %}
+    <br><br><br><br><br>
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/css/message.css')}}" />
+
+<section id="contact">
+    <div class="sectionheader">	<h1>CONTACT</h1></div>
+    <article>
+        <p>Envoyer une reclamation a une personne  </p>
+
+        {{ form_start(form) }}
+
+        <label for="checkcontact" class="contactbutton"><div class="mail"></div></label><input id="checkcontact" type="checkbox">
+
+        <div class="contactform">
+            <div class="form-group required">
+                <br><br>
+                {{ form_label(form.nomDestinataire, 'Nom Destinataire', {'label_attr' :{'class': 'col-sm-2 control-label'}}) }}
+
+                <div class="col-sm-10">
+                    {{ form_widget(form.nomDestinataire, {'attr':{'class':'form-control','placeholder':'Nom Destinataire'}}) }}
+                </div>
+            </div>
+            <br><br>
+            {{ form_label(form.contenu, 'Contenu', {'label_attr' :{'class': 'col-sm-2 control-label'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.contenu, {'attr':{'class':'form-control','placeholder':'Contenu'}}) }}
+            </div>
+            <br><br><br><br><br>
+
+        <p class="submit_wrapper"><input type="submit" value="ENVOYER"></p>
+        </div>
+
+        {{ form_end(form) }}
+    </article>
+</section>
+    <br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

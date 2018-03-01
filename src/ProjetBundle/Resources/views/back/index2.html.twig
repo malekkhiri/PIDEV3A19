@@ -65,6 +65,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <a href="index.html">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
+                            <li><a href="{{ path('home') }}"> retour à la page d'acceuil</a> <li>
                         </li>
                         <li class="treeview">
                             <a href="#">
@@ -73,8 +74,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="grids.html"><i class="fa fa-angle-right"></i> Grids</a></li>
-                                <li><a href="media.html"><i class="fa fa-angle-right"></i> Media Css</a></li>
+                                <!--  <li><a href="{{ path('back_office') }}"><i class="fa fa-angle-right"></i> General Forms</a></li> -->
+                               <li> <a href="{{ path('_graphePiee') }}"><i class="fa fa-angle-right"></i>Statistique Produit </a></li>
+                                <li><a href="{{ path('_graphePie') }}"><i class="fa fa-angle-right"></i> Statistiques Evenement </a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -119,7 +121,16 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="{{ path('rech') }}"><i class="fa fa-angle-right"></i> Simple tables</a></li>
+                                <li><a href="{{ path('rech') }}"><i class="fa fa-angle-right"></i> User tables</a></li>
+                                <li><a href="{{ path('Produit_T') }}"><i class="fa fa-angle-right"></i> Product tables</a></li>
+                                <li><a href="{{ path('_backmagasin') }}"><i class="fa fa-angle-right"></i> Liste des Magasin </a></li>
+                                <li><a href="{{ path('_afficheEvenement') }}"><i class="fa fa-angle-right"></i> Liste Evenement</a></li>
+
+
+                                <li><a href="{{ path('appannoce') }}">
+                                        <i class="fa fa-pie-chart"></i>
+                                        <span>Annonces</span>
+                                    </a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -164,86 +175,35 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <button id="showLeftPush"><i class="fa fa-bars"></i></button>
             <!--toggle button end-->
             <div class="profile_details_left"><!--notifications of menu start -->
-                <ul class="nofitications-dropdown">
-                    <li class="dropdown head-dpdn">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">4</span></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="notification_header">
-                                    <h3>You have 3 new messages</h3>
-                                </div>
-                            </li>
-                            <li><a href="#">
-                                    <div class="user_img"><img src="images/1.jpg" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet</p>
-                                        <p><span>1 hour ago</span></p>
+                <div class="profile_details_left"><!--notifications of menu start -->
+                    <ul class="nofitications-dropdown">
+
+                        <li class="dropdown head-dpdn">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell">
+
+                                </i><span class="badge blue" id="notifier" onclick="hide()"  > {{ count }} </span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="notification_header">
+                                        <h3>You have {{ count }} new notification</h3>
                                     </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li class="odd"><a href="#">
-                                    <div class="user_img"><img src="images/4.jpg" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet </p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li><a href="#">
-                                    <div class="user_img"><img src="images/3.jpg" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet </p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li>
-                                <div class="notification_bottom">
-                                    <a href="#">See all messages</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown head-dpdn">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">4</span></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="notification_header">
-                                    <h3>You have 3 new notification</h3>
-                                </div>
-                            </li>
-                            <li><a href="#">
-                                    <div class="user_img"><img src="images/4.jpg" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet</p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li class="odd"><a href="#">
-                                    <div class="user_img"><img src="images/1.jpg" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet </p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li><a href="#">
-                                    <div class="user_img"><img src="images/3.jpg" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet </p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li>
-                                <div class="notification_bottom">
-                                    <a href="#">See all notifications</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown head-dpdn">
+                                </li>
+                                {% for i in notif %}
+                                 <li> <a href="{{ path('Produit_T') }}"  >
+                                            <div class="user_img"><img src="images/4.jpg" alt=""></div>
+                                            <div class="notification_desc">
+                                                <p>{{ i.subject }}</p>
+                                                <p><span>{{ i.date | date('y-m-d') }}</span></p>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                     </a> </li>
+
+                                {% endfor %}
+
+                            </ul>
+                        </li>
+                 {#   <li class="dropdown head-dpdn">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">8</span></a>
                         <ul class="dropdown-menu">
                             <li>
@@ -293,7 +253,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </div>
                             </li>
                         </ul>
-                    </li>
+                    </li>#}
                 </ul>
                 <div class="clearfix"> </div>
             </div>
@@ -322,8 +282,20 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <div class="profile_img">
                                 <span class="prfil-img"><img src="images/2.jpg" alt=""> </span>
                                 <div class="user-name">
-                                    <p>Admin Name</p>
+                                    <p>{{ app.user.username}}</p>
                                     <span>Administrator</span>
+
+
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+                    <li> <a href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a></li>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login')}}">Login</a></li>
+                        <li><a href="{{ path('fos_user_registration_register')}}">Register</a></li>
+                    {% endif %}
+                </ul>
                                 </div>
                                 <i class="fa fa-angle-down lnr"></i>
                                 <i class="fa fa-angle-up lnr"></i>

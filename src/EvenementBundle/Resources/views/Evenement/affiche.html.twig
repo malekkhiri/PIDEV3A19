@@ -1,0 +1,36 @@
+{% extends "ProjetBundle:back:table.html.twig" %}
+
+ {% block container %}
+
+
+
+     {#{{ twitterButton() }}#}
+
+     <h1>Listes des evenements</h1>
+<table class="table">
+
+    <tr>
+        <th>Nom Evenement</th><th>Date Debut</th><th>Date Fin</th><th>Lieux</th><th>Description</th><th>Modifier</th><th>Supprimer</th></tr>
+
+    {% for evenement in e %}
+        <tr>
+            <td>{{ evenement.nomEvenement }}</td>
+            <td>{{ evenement.dateDebut|date("y-m-d") }}</td>
+            <td>{{ evenement.dateFin|date("y-m-d") }}</td>
+            <td>{{ evenement.Lieux}}</td>
+            <td>{{ evenement.Description }}</td>
+            <td><a href="{{ path('_modifier',{'id':evenement.id}) }}">Modifier</a> </td>
+            <td><a href="{{ path('_supprimerEvenement',{'id':evenement.id}) }}">Supprimer</a> </td>
+
+        </tr>
+
+    {% endfor %}
+
+
+
+</table>
+     <a href="{{ path('_ajoutEvenement') }}" > <h3>Ajouter un Evenement</h3></a> <br>
+
+     {{ socialButtons() }}
+
+{% endblock %}

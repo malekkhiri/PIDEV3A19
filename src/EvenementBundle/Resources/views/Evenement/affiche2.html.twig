@@ -1,0 +1,313 @@
+{#
+
+
+     <table class="table">
+
+         <tr>
+             <th>Nom Evenement</th><th>Date Debut</th><th>Date Fin</th><th>Lieux</th><th>Description</th>
+         </tr>
+
+             <tr>
+                 <td><a href="{{ path('_singleEvent',{'id':evenement.id}) }}">{{ evenement.nomEvenement }}</a></td>
+                 <td>{{ evenement.dateDebut|date("y-m-d") }}</td>
+                 <td>{{ evenement.dateFin|date("y-m-d") }}</td>
+                 <td>{{ evenement.Lieux}}</td>
+                 <td>{{ evenement.Description }}</td>
+                 #}{#
+#}
+{#<td><a href="{{ path('_ajoutComment',{'id_Evenement':evenement.id_Evenement}) }}">Add Comment</a> </td>#}{#
+#}
+{#
+
+
+             </tr>
+
+         {% endfor %}
+
+     </table>
+     <a href="{{ path('_recherche') }}">Effectuer une recherche</a>#}{#
+
+
+
+{% extends "::base.html.twig" %}
+
+ {% block content %}
+<link href="{{ asset('bundles/css/evenement.css')}}" rel='stylesheet' type='text/css' />
+
+<h1>Listes des evenements</h1>
+ {% for evenement in e %}
+<a href="{{ path('_singleEvent',{'id':evenement.id}) }}">
+<div class="record_wrap">
+
+     <section class="record">
+        <div class="record-arrow">
+            <img src="http://www.portalguard.com/images/icons/right-arrow.png">
+        </div>
+        <div id="record1" class="record-display">
+
+        </div>
+        <div class="record-desc">
+            <h1{{ evenement.dateDebut|date("y-m-d") }}</h1>
+            <p>{{ evenement.dateDebut|date("y-m-d") }}</p>
+            <p>
+                l'venement sera lieux à {{ evenement.Lieux}}
+                Description {{ evenement.Description }}
+            </p>
+        </div>
+        </section>
+</div></a>
+{% endfor %}
+
+    {% endblock %}
+#}
+{#
+{% extends "::base.html.twig" %}
+
+ {% block content %}
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script>
+         $(document).ready(function(){
+             $("#eve").on("keyup", function() {
+                 var value = $(this).val().toLowerCase();
+                 $(".product-thumb").filter(function() {
+                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                 });
+             });
+         });
+     </script>
+
+ <link href="{{ asset('bundles/css/evenement.css')}}" rel='stylesheet' type='text/css' />
+     <h3 class="subtitle">Nom Evenement <input id="eve" class="form-control" type="text" placeholder="Chercher .."></h3>
+
+
+ {% for evenement in e %}
+<section id="timeline">
+    <article class="product-thumb">
+        <div class="inner">
+      <span class="date">
+      {{ evenement.dateDebut|date("y-m-d") }}
+      </span>
+            <h2><a href="{{ path('_singleEvent',{'id':evenement.id}) }}">{{ evenement.nomEvenement }}</a></h2>
+            <p>  Description {{ evenement.Description }}  </div>
+    </article>
+
+</section>
+        {% endfor %}
+
+{% endblock %}#}
+
+{% extends "::base.html.twig" %}
+
+ {% block content %}
+     <br><br><br><br><br><br>
+
+     <style>
+
+    @import url(https://fonts.googleapis.com/css?family=Pacifico);
+    body {
+/*
+        padding: 0 100px 100px;
+*/
+/*
+        background-color: #CDE !important;
+*/
+    }
+
+    h1#header {
+        text-align: center;
+        padding: 50px;
+        font-size: 62px;
+        font-family: "Pacifico";
+        text-shadow: 0 2px 2px #3c77b3;
+    }
+
+    .article-wrapper {
+        -moz-transition: width 0.4s;
+        -o-transition: width 0.4s;
+        -webkit-transition: width 0.4s;
+        transition: width 0.4s;
+    }
+
+    article {
+        position: relative;
+        padding-left: 180px;
+        padding-right: 75px;
+        height: 150px;
+        margin-bottom: 30px;
+        background-color: #FFF;
+        -moz-border-radius: 150px;
+        -webkit-border-radius: 150px;
+        border-radius: 150px;
+        cursor: pointer;
+    }
+    article .img-wrapper {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        -moz-border-radius: 100px;
+        -webkit-border-radius: 100px;
+        border-radius: 100px;
+        background-color: #CDE;
+        padding: 10px;
+        z-index: 1000;
+        -moz-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+    article .img-wrapper img {
+        -moz-border-radius: 100px;
+        -webkit-border-radius: 100px;
+        border-radius: 100px;
+        -moz-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+        width: 150px;
+    }
+    article h1 {
+        height: 75px;
+        line-height: 75px;
+        font-size: 24px;
+        border-bottom: 2px solid #CDE;
+        color: #428bca;
+        -moz-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        -webkit-transition: all 0.4s;
+        transition: all 0.4s;
+    }
+    article p {
+        color: #888;
+    }
+    article a {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        height: 100%;
+        line-height: 150px;
+        text-align: center;
+        width: 100%;
+        background-color: #FFF;
+        font-size: 48px;
+        font-style: italic;
+        opacity: 0;
+        color: #428bca !important;
+        -moz-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        -webkit-transition: all 0.4s;
+        transition: all 0.4s;
+        text-decoration: none !important;
+        -moz-border-radius: 150px;
+        -webkit-border-radius: 150px;
+        border-radius: 150px;
+        font-family: "Pacifico";
+        text-shadow: 0 1px 1px #AAA;
+    }
+    article:hover .img-wrapper {
+        padding: 5px;
+        -moz-transform: rotate(5deg);
+        -ms-transform: rotate(5deg);
+        -webkit-transform: rotate(5deg);
+        transform: rotate(5deg);
+    }
+    article:hover .img-wrapper img {
+        width: 160px;
+    }
+    article:hover a {
+        opacity: 1;
+    }
+
+    .bloc article {
+        padding: 10px;
+        height: 225px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        margin-top: 75px;
+    }
+    .bloc article .img-wrapper {
+        position: relative;
+        top: -85px;
+        width: 170px;
+        left: inherit;
+        margin: auto;
+        margin-bottom: -100px;
+    }
+    .bloc article h1 {
+        font-size: 14px;
+        height: 37.5px;
+        line-height: 37.5px;
+    }
+    .bloc article p {
+        font-size: 12px;
+    }
+    .bloc article a {
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        line-height: 255px;
+    }
+
+</style>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+
+
+     <div class="container list-article">
+         <form method="post">
+             <input type="text" name="nomEvenement" class="form-control" id="s" placeholder="Chercher un Evenement ">
+         </form>
+
+
+         <div class="clearfix"></div>
+    <div class="row" id="res">
+        {% for evenement in e %}
+
+        <div class="col-xs-12 article-wrapper" >
+            <article>
+                <a href="{{ path('_singleEvent',{'id':evenement.id}) }}" class="more">more</a>
+                <h1>{{ evenement.nomEvenement }}</a></h1>
+                <p>{{ evenement.Description }}.</p>
+                <p> date de l'evenment {{ evenement.dateDebut|date("y-m-d") }}</p>
+            </article>
+        </div>
+
+        {% endfor %}
+    </div>
+    </div>
+</div>
+
+     <br><br><br><br><br><br>
+
+
+     <script src="{{ asset('bundles/js/jquery-2.1.1.min.js') }}"></script>
+     <script src="{{ asset('web/bundles/js/bootstrap/js/bootstrap.min.js') }}"></script>
+
+
+     <script>
+$('#s').keyup(function () {
+var input = $("#s").val();
+$.ajax({
+type: "post",
+url: "{{ path('_recherche') }}",
+data: {'nomEvenement': input},
+success: function (data) {
+console.log(data.nomEvenement);
+$("#res").html(data);
+
+
+}
+});
+
+});
+</script>
+
+{% endblock %}
+
+
+
+

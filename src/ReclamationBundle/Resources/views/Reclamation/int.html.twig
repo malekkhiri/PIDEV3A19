@@ -1,0 +1,34 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+<link href='https://fonts.googleapis.com/css?family=Dosis:700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/css/int.css')}}" />
+
+
+<section class="section-contactboxes">
+    <div class="row">
+        <a href="{{ path('_affiche') }}" >
+            <div class="large-4 columns contact-box-cntr">
+            <div class="contact-box contact-box--teal">
+                <i class="contact-box__icon ico ico-clock">Consulter vos reclamation</i>
+                <h4 class="contact-box__title"></h4>
+
+            </div>
+        </div>
+        </a>
+        <br><br><br><br>
+
+        <a href="{{ path('_ajout') }}" >
+        <div class="large-4 columns contact-box-cntr">
+            <div class="contact-box contact-box--orange">
+                <i class="contact-box__icon ico ico-envelope"></i>
+                <h4 class="contact-box__title">Envoyer une Reclamation </h4>
+            </div>
+        </div></a>
+
+    </div>
+
+</section>
+    <br><br><br><br>
+{% endblock %}

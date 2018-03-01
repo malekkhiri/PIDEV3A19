@@ -1,0 +1,40 @@
+{% extends "::base.html.twig" %}
+{% block content %}
+
+<div  class="row">
+<div id="content" class="col-sm-9">
+          <div itemscope itemtype="http://schema.org/Product">
+            <h1 class="title" itemprop="name">{{annonce.titre}}</h1>
+            <div class="row product-info">
+              <div class="col-sm-6">
+                <div class="image"><img class="img-responsive" itemprop="image" id="zoom_01" src="{{ asset('bundles/images/')~ annonce.imageName }}" data-zoom-image="image/product/macbook_air_1-600x900.jpg" /> </div>
+                <div class="center-block text-center"></div>
+              
+              </div>
+              <div class="col-sm-6">
+                <ul class="list-unstyled description">
+                  <li><b>titre:</b> <a href="#"><span itemprop="brand">{{annonce.titre}}</span></a></li>
+                  <li><b>Nom vendeur:</b> <span itemprop="mpn">{{annonce.user.username}}</span></li>
+                  <li><b>Ville :</b> {{annonce.ville}}</li>
+                  <li><b>Region :</b> {{annonce.region}}</li>
+                  <li><b>Description :</b> {{annonce.description}}</li>
+                  <li><b>Telephone :</b> {{annonce.telephoneVendeur}}</li>
+                  <li><b>Date publication :</b> {{annonce.datepublication}}</li>
+                  <li><span class="instock">In Stock</span></li>
+                </ul>
+                <ul class="price-box">
+                  <li class="price" itemprop="offers"> <span itemprop="price"><span itemprop="availability" content="In Stock"></span></span></li>
+                  <li></li>
+                  <li>Prix: {{annonce.prix}} TND</li>
+                </ul>
+              </div>
+            </div>
+         
+           
+           
+          </div>
+        </div>
+        </div>
+{% endblock %}
+
+

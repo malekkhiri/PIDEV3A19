@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+ {% block content %}
+
+     <table>
+
+         <th>id </th> <th>note</th> <th>date</th><th>utilisateur</th>
+
+         {% for note in n %}
+                 <tr class="product-thumb">
+                     <td>{{ note.IdMagasin.IdMagasin }}</td>
+                     <td>{{ note.getNote() }}</td>
+                     <td>{{ note.getDatenote()|date("m/d/Y") }}</td>
+                     <td>{{ note.getIdUser() }}</td>
+
+                 </tr>
+         {% endfor %}
+
+
+     </table>
+
+ {% endblock %}

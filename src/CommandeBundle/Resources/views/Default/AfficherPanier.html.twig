@@ -1,0 +1,144 @@
+
+
+{% extends "::base.html.twig" %}
+{% block content %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".product-thumb").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        // Store link with class `Supprimer` to a variable
+        var $Supprimer = $('.Supprimer');
+
+        // Hide it
+        $Supprimer.hide();
+
+        // Show it when the link with class `Ajout` is clicked
+        $('.Ajout').on('click', function(e) {
+            e.preventDefault();
+            $Supprimer.show();
+        });
+    </script>
+    <script>
+        function euroConverter(val) {
+            document.getElementById("euro").innerHTML=val*2.8;
+
+        }
+        function dollarConverter(val) {
+            document.getElementById("dollar").innerHTML=val*2.3;
+
+        }
+
+    </script>
+    {% set counter = 0 %}
+    <h1 style="text-align: center; color: #cb1d1d"> Liste des Produits</h1>
+    {% for i in m %}
+        {% set counter = counter + (i.id_Produit.prix ) %}
+    {% endfor %}
+    <h2>Prix :   {{ counter }} DT   </h2>
+<div id="container">
+
+        <input type="text" id="myInput" class="form-control"  placeholder="Chercher Commande ">
+
+    <div class="container">
+        <!-- Breadcrumb Start-->
+        <ul class="breadcrumb">
+            <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+        </ul>
+        <!-- Breadcrumb End-->
+        <div class="row">
+            <!--Middle Part Start-->
+            <div id="content" class="col-sm-12">
+                <h1 class="title">Shopping Cart</h1>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <td class="text-center">Image</td>
+                            <td class="text-left">Nom du Produit</td>
+                            <td class="text-left">Description</td>
+                            <td class="text-left">Action</td>
+
+
+                            <td class="text-right">Prix</td>
+
+                        </tr>
+                        </thead>
+
+                        <div class="row" >
+
+                        {% for commande in m %}
+
+                        <tbody>
+                        <tr class="product-thumb">
+                            <td><img style="width: 60px; height: 60px" src="{{ asset('bundles/uploads/brochures/'~(commande.id_Produit.brochure) )}}"></td>
+
+                            <td class="text-left"><a href="{{ path('afficher_Produit',{'id':commande.id_Produit.idProduit} )}}">{{ commande.id_Produit.nomProduit }}</a>
+                            <td class="text-left"> {{ commande.id_Produit.description }}</td>
+
+                            <td class="text-right">{{ commande.id_Produit.prix }} dt</td>
+                            <td>
+
+
+                                <a href={{ path('supprimerCommande', {'id':commande.id}) }}>Supprimer</a>
+{#
+                                <a href={{ path('Ajout', {'id':commande.id}) }}>Modifier La Quantite</a>
+#}
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+
+
+                        {% endfor %}
+
+                        </div>
+                    </table>
+                </div>
+
+                <div class="buttons">
+                    <div class="pull-left"><a href="{{ path('list') }}" class="btn btn-primary">Continuer votre Achat</a></div>
+                    <div class="pull-right"><a href="{{ path('Valider') }}" class="btn btn-primary">Checkout</a></div>
+                </div>
+            </div>
+            <!--Middle Part End -->
+        </div>
+    </div>
+    <center>
+    <a href="{{ path('Vider') }}">
+        <button class="btn btn-primary">Vider Votre Panier</button>
+    </a>
+    </center>
+</div>
+
+    <html>
+    <title>DINAR TO EURO</title>
+    <body>
+    <br>
+    <label>Convertir en Euro</label>
+    <input class="form-control" id="dinar" placeholder="Dinar" oninput="euroConverter(this.value)">
+  <h2 style="color: #00ad45">  <span id="euro"> </span> </h2>
+    <br>
+    <label>Convertir en Dollar</label>
+    <input class="form-control" id="dinar1" placeholder="Dinar" oninput="dollarConverter(this.value)">
+    <h2 style="color: #00ad45"> <span id="dollar"> </span></h2>
+    </body>
+
+
+
+
+
+    </html>
+
+
+
+
+{% endblock %}

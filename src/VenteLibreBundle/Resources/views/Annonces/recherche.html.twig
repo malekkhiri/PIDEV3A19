@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+{% block content %}
+<h1 style="text-align: center;color: #cb1d1d">Recherche Annonce</h1>
+
+
+<table class="table">
+    <section class="table">
+
+{{ form(Form) }}
+
+<h2>Liste des Annonces</h2>
+<section border="1">
+    <tr>
+        <th>Titre</th><th>Ville</th><th>Region</th><th>Description</th><th>Nom vendeur</th><th>Prenom vendeur</th>
+        <th>Telephone vendeur</th>
+
+    </tr>
+    {% for annonces in m %}
+        <tr>
+            <td>{{ annonces.titre }}</td>
+            <td>{{ annonces.ville }}</td>
+            <td>{{ annonces.region }}</td>
+            <td>{{ annonces.description}}</td>
+            <td>{{ annonces.telephoneVendeur }}</td>
+
+        </tr>
+    {% endfor %}
+</section>
+</section>
+</table>
+{% endblock %}

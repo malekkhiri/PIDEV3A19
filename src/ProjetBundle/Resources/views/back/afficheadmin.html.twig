@@ -1,0 +1,46 @@
+{% extends "ProjetBundle:back:table.html.twig" %}
+ {% block container %}
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script>
+         $(document).ready(function(){
+             $("#mag").on("keyup", function() {
+                 var value = $(this).val().toLowerCase();
+                 $(".product-thumb").filter(function() {
+                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                 });
+             });
+         });
+     </script>
+
+
+     Nom Magasin <input id="mag" class="form-control" type="text" placeholder="Chercher ..">
+     <table class="table">
+
+         <th>Id</th> <th>Nom Magasin</th><th>Region</th><th>Ville</th> <th>AdresseMagasin</th> <th>Propriétaire Magasin</th>
+
+         <th>Valider Magasin</th>
+         <th>Supprimer Magasin</th>
+
+         </tr>
+
+         {% for magasin in m %}
+             <tr class="product-thumb">
+                 <td>{{ magasin.getIdMagasin() }}</td>
+                 <td>{{ magasin.getNomMagasin() }}</td>
+                 <td>{{ magasin.getRegion() }}</td>
+                 <td>{{ magasin.getVille() }}</td>
+                 <td>{{ magasin.getAdresseMagasin() }}</td>
+                 <td>{{ magasin.getPropMagasin() }}</td>
+
+                 <td><a href="{{ path('_valide',{'id':magasin.getIdMagasin()}) }}">valider</a></td>
+                 <td><a href="{{ path('_SupprimerMagasinn',{'id':magasin.getIdMagasin()}) }}">Supprimer</a></td>
+
+
+
+             </tr>
+
+         {% endfor %}
+         </section>
+
+     </table>
+ {% endblock %}

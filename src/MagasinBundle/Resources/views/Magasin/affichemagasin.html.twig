@@ -1,42 +1,184 @@
-
 {% extends "::base.html.twig" %}
-{% block content %}
+ {% block content %}
+     <style>
 
-    <h1 style="text-align: center ; color: #cb1d1d" xmlns="http://www.w3.org/1999/html">Listes Des Magasins</h1>
-    <table class="table">
-        <section class="tableau"></section>
+         thead th {
 
-        <tr>
-            <th>Id</th> <th>Nom Magasin</th><th>Propriétaire Magasin</th> <th>AddresseMagasin</th>
-            {% if is_granted("ROLE_VENDEUR") %}
-                <th>Modifier Magasin</th>
-                <th>Supprimer Magasin</th>
-            {% endif %}
-        </tr>
-
-        {% for magasin in m %}
-            <tr>
-                <td>{{ magasin.getIdMagasin() }}</td>
-                <td>{{ magasin.getNomMagasin() }}</td>
-                <td>{{ magasin.getPropMagasin() }}</td>
-                <td>{{ magasin.getAddresseMagasin() }}</td>
-                {% if is_granted("ROLE_VENDEUR") %}
-                    <td><a href="{{ path('_ModifierMagasin',{'id':magasin.getIdMagasin()}) }}">Modifier</a></td>
-                    <td><a href="{{ path('_SupprimerMagasin',{'id':magasin.getIdMagasin()}) }}">Supprimer</a></td>
-
-                {% endif %}
+             font-family: 'Patua One', cursive;
+             font-size:16px;
+             font-weight:400;
+             color:#fff;
+             text-shadow:1px 1px 0px rgba(0,0,0,0.5);
+             text-align:left;
+             padding:20px;
+             background-color: #ff756b;
+             linear-gradient: #5e51fb;
+             border-top:1px solid #3626fb;}
+         * {
+             -moz-box-sizing: border-box;
+             -webkit-box-sizing: border-box;
+             box-sizing: border-box;
+         }
 
 
-            </tr>
+         .table {
 
-        {% endfor %}
-        </section>
+             border-collapse: separate;
+             background:#fff;
+             border-radius:5px;
+             margin:50px auto;
+             box-shadow:0px 0px 5px rgba(0,0,0,0.3);
+         }
 
-    </table>
-    <br>
-    {% if is_granted("ROLE_VENDEUR") %}
-        <a href="{{ path('_RechercheMagasin') }}"><h5 style="text-align: center"> Effectuer Recherche</h5></a>
-        <a href="{{ path('_AjoutMagasin') }}"><h5 style="text-align: center"> Ajouter une Magasin </h5></a>
-        <br>
-    {% endif %}
-{% endblock %}
+         thead {
+             border-radius:5px;
+         }
+
+
+         first-child {
+             border-top-left-radius:5px;
+         }
+
+         last-child {
+         border-top-right-radius(5px);
+         }
+
+
+         tbody tr td {
+             font-family: 'Open Sans', sans-serif;
+             font-weight:400;
+             color:#5f6062;
+             font-size:13px;
+             padding:20px 20px 20px 20px;
+             border-bottom:1px solid #e0e0e0;
+
+         }
+
+         tbody tr:nth-child(2n) {
+             background:#f0f3f5;
+         }
+
+         tbody tr:last-child td {
+             border-bottom: none;
+         }
+         first-child {
+         border-bottom-left-radius(5px);
+         }
+         last-child {
+         border-bottom-right-radius(5px);
+         }
+
+
+         tbody:hover > tr td {
+             opacity:0.5;
+
+             /* uncomment for blur effect */
+             /* color:transparent;
+             @include text-shadow(0px 0px 2px rgba(0,0,0,0.8));*/
+         }
+
+         tbody:hover > tr:hover td {
+             text-shadow:none;
+             color:#2d2d2d;
+             opacity:1.0;
+         }
+
+
+     </style>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script>
+         $(document).ready(function(){
+             $("#mag").on("keyup", function() {
+                 var value = $(this).val().toLowerCase();
+                 $(".product-thumb").filter(function() {
+                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                 });
+             });
+         });
+     </script>
+     <br>
+
+<input id="mag" class="form-control" type="text" placeholder="Chercher ..">
+     <table class="table">
+         <thead>
+         <br>
+         <th>Id</th><th>Nom Magasin</th><th>Region</th><th>Ville</th><th>AdresseMagasin</th><th>Liste des produits</th>
+
+         {% if is_granted("ROLE_UTILISATEUR") %}
+         <th>Note</th>
+
+         {% endif %}
+
+         {% if is_granted("ROLE_VENDEUR") %}
+             <th class="cellule">Propriétaire Magasin</th>
+             <th class="cellule">Modifier Magasin</th>
+             <th class="cellule">Supprimer Magasin</th>
+             <th class="cellule">Ajouter Produit</th>
+             <th class="cellule">FeedBack Client </th>
+         {% endif %}
+         </tr>
+         </thead>
+         <tbody>
+         {% for magasin in m %}
+             {% if magasin.Validated == 1 %}
+                 <tr class="product-thumb" >
+                     <td>{{ magasin.getIdMagasin() }}</td>
+                     <td>{{ magasin.getNomMagasin() }}</td>
+                     <td>{{ magasin.getRegion() }}</td>
+                     <td>{{ magasin.getVille() }}</td>
+                     <td>{{ magasin.getAdresseMagasin() }}</td>
+
+                     <td><a href="{{ path('produit_Affichage_M',{'id':magasin.getIdMagasin}) }}">afficher Produit</a>
+
+                         {% if is_granted("ROLE_UTILISATEUR") %}
+
+                         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/css/raating.css')}}" />
+
+                         <td>
+                         <div class="rating">
+                             <label>
+                                 <a id="a5" href="{{ path('CreateRating',{"note":5,"id": magasin.getIdMagasin}) }}">  <input type="button" id="rating" value="5" title="5 stars"> 5</a>
+                             </label>
+                             <label>
+                                 <a id="a4" href="{{ path('CreateRating',{"note":4,"id": magasin.getIdMagasin}) }}"> <input type="button" id="rating" value="4" title="4 stars"> 4</a>
+                             </label>
+                             <label>
+                                 <a id="a3" href="{{ path('CreateRating',{"note":3,"id": magasin.getIdMagasin}) }}"> <input type="button" id="rating" value="3" title="3 stars"> 3</a>
+                             </label>
+                             <label>
+                                 <a id="a2" href="{{ path('CreateRating',{"note":2,"id": magasin.getIdMagasin}) }}"> <input type="button" id="rating" value="2" title="2 stars"> 2</a>
+                             </label>
+                             <label>
+                                 <a id="a1" href="{{ path('CreateRating',{"note":1,"id": magasin.getIdMagasin}) }}"> <input type="button" id="rating" value="1" title="1 star"> 1</a>
+                             </label>
+                         </div>
+
+                         </td>
+                     {% endif %}
+
+
+                     {% if is_granted("ROLE_VENDEUR") %}
+                         <td>{{ magasin.getPropMagasin() }}</td>
+                         <td><a href="{{ path('_ModifierMagasin',{'id':magasin.getIdMagasin()}) }}">Modifier</a></td>
+                         <td><a href="{{ path('_SupprimerMagasin',{'id':magasin.getIdMagasin()}) }}">Supprimer</a></td>
+                         <td><a href="{{ path('produit_Ajout',{'id':magasin.getIdMagasin}) }}">Ajouter Produit</a>
+                         <td>    <a href="{{ path('_AfficheNote',{'id':magasin.getIdMagasin}) }}"><h5 style="text-align: center"> FeedBack Magasin </h5></a></td>
+
+                             {% endif %}
+                 </tr>
+             {% endif %}
+         {% endfor %}
+         </tbody>
+         </section>
+
+     </table>
+     <br>
+
+     {% if is_granted("ROLE_VENDEUR") %}
+         <a href="{{ path('_AjoutMagasin') }}"><h5 style="text-align: center"> Ajouter une Magasin </h5></a>
+         <br>
+
+
+     {% endif %}
+
+       {% endblock %}
